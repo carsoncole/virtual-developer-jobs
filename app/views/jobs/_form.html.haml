@@ -1,0 +1,64 @@
+.container
+  .row
+    .col-md-12
+      = form_for @job do |f|
+        .form-group
+          - if @job.errors.any?
+            #error_explanation
+              %h2= "#{pluralize(@job.errors.count, "error")} prohibited this job from being saved:"
+              %ul
+                - @job.errors.full_messages.each do |msg|
+                  %li= msg
+
+        .row
+          .col-md-6
+            = f.label :job_title
+            = f.text_field :title, class: 'form-control'
+        %br
+
+        .row
+          .col-md-12
+            = f.label :description
+            %p.text-muted Markdown can be used
+            = f.text_area :description, rows: 10, class: 'form-control'
+
+        %br
+
+        %hr
+
+        %h3.text-danger Company
+
+        .row
+          .col-md-6
+            = f.label :company_name
+            = f.text_field :company_name, class: 'form-control'
+
+            %br
+
+            = f.label :company_url
+            = f.text_field :company_url, class: 'form-control'        
+
+            %br
+
+            = f.label :company_email
+            = f.text_field :company_email, class: 'form-control'   
+
+
+        %hr
+
+        %h3.text-danger Where to Apply
+
+        .row
+          .col-md-6
+            = f.label :url
+            = f.text_field :url, class: 'form-control'
+
+            %br
+
+            = f.label :email
+            = f.text_field :email, class: 'form-control'
+
+
+            %br
+            .actions
+              = f.submit 'Save'

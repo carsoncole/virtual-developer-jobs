@@ -1,0 +1,39 @@
+.container
+  .row
+    .col-md-10.col-md-offset-1
+
+      - unless @preview
+        %p= link_to "<< Back to all virtual Jobs", jobs_path
+        %br
+
+
+      - if @preview
+        %h1
+          STEP 2 - PREVIEW
+
+      %h1.h1= @job.title
+
+      %h2.h2= @job.company_name
+      %p= link_to @job.company_url
+
+      %br
+
+      = Redcarpet::Markdown.new(Redcarpet::Render::HTML, extensions: {}).render(@job.description).html_safe
+
+
+      %h3.h3 APPLY
+
+      - if @job.email
+        %p= mail_to @job.email
+
+      - if @job.url
+        %p= link_to @job.url
+
+
+      - if @preview
+
+        %br
+
+        = link_to 'Edit', edit_job_path(@job)
+        \|
+        = link_to 'Back', jobs_path

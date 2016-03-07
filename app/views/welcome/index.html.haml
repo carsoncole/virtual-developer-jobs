@@ -1,0 +1,38 @@
+.container
+  .row
+    .col-md-2
+    .col-md-8
+      %h3.h3.text-center Virtual Developer Jobs is focused on virtual/remote jobs for developers.
+
+  .row
+    .col-md-4
+    .col-md-4
+      .text-center
+        %p
+          = button_to "Post a Job!", new_job_path, method: :get, class: 'pop btn btn-lg btn-success'
+        $100 for 30 days.
+
+  %br
+
+
+
+  .row
+    .col-md-2
+    .col-md-8
+      %table.table
+        - @jobs.each do |job|
+          %tr
+            %td= link_to job.title, job
+            %td= link_to job.company_name, job
+            %td.text-right= distance_of_time_in_words_to_now(job.created_at)
+
+      %p= link_to "All virtual Jobs >>", jobs_path
+
+      %br
+
+
+
+      %p.text-center Follow us on Twitter @virtualdevjobs
+
+      
+      
