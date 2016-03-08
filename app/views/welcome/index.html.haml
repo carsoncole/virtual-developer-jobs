@@ -3,7 +3,7 @@
     .col-md-2
     .col-md-8
       %h2.text-center
-        Virtual Developer Jobs is a job site solely focused on virtual/remote jobs for developers working from home or anywhere. 
+        Virtual Developer Jobs is a virtual/remote jobs site for developers working from home or anywhere. Look globally, not just locally.
 
 
 = render 'payments/march_madness'
@@ -13,12 +13,13 @@
     .col-md-6
       .well.employers
         %h3.h3.text-center.no-top-margin EMPLOYERS
-        .text-center
-          .text-center= button_to "Post a Job! - $100/30 days", new_job_path, method: :get, class: 'pop btn btn-lg navbar-btn btn-success'
+        %p.text-center Post your virtual job.
+        .text-center= button_to "Post a Job! - $100/30 days", new_job_path, method: :get, class: 'pop btn btn-lg navbar-btn btn-success'
       
     .col-md-6
       .well
         %h3.h3.text-center.no-top-margin DEVELOPERS
+        %p.text-center Find your virtual job.
         .text-center
           = link_to "Follow @VirtualDevJobs", "https://twitter.com/VirtualDevJobs", class: "twitter-follow-button", "data-show-count" => false, "data-size" => "large"
 
