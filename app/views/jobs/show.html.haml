@@ -26,6 +26,7 @@
       - if @job.tag_list.any?
         - @job.tag_list.each do |tag|
           .label.label-default=tag
+        %br
 
       - unless @job.how_to_apply.blank?
 
