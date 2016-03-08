@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160308175505) do
+ActiveRecord::Schema.define(version: 20160308181228) do
 
   create_table "jobs", force: :cascade do |t|
     t.string   "company_name",  null: false
@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(version: 20160308175505) do
     t.datetime "updated_at",    null: false
     t.datetime "published_at"
     t.integer  "payment_id"
+    t.text     "how_to_apply"
   end
 
   create_table "notifications", force: :cascade do |t|

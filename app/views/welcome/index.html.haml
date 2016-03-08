@@ -2,16 +2,19 @@
   .row
     .col-md-2
     .col-md-8
-      %p.text-center
-        Virtual Developer Jobs is a job site solely focused on virtual/remote jobs for developers working from home or anywhere. Organizations can find contractors expert in specific areas. 
+      %h2.text-center
+        Virtual Developer Jobs is a job site solely focused on virtual/remote jobs for developers working from home or anywhere. 
+
+
+= render 'payments/march_madness'
+
+.container
   .row
     .col-md-6
       .well.employers
         %h3.h3.text-center.no-top-margin EMPLOYERS
         .text-center
-          .text-center= button_to "Post a Job!", new_job_path, method: :get, class: 'pop btn navbar-btn btn-success'
-          %span.line-through $100 for 30 days
-          Free in March.
+          .text-center= button_to "Post a Job! - $100/30 days", new_job_path, method: :get, class: 'pop btn btn-lg navbar-btn btn-success'
       
     .col-md-6
       .well
@@ -45,7 +48,7 @@
           - @jobs.each do |job|
             %tr
               %td= link_to job.title, job
-              %td= job.tag_list
+              %td= job.tag_list.to_s.truncate(150)
               %td= link_to job.company_name, job
               %td.text-right= job.published_at.strftime("%b %e")
 

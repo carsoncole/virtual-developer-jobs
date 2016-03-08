@@ -1,4 +1,4 @@
-.container
+.container.steps
   .row
     .col-md-12
       .form-group
@@ -11,6 +11,9 @@
                   - @job.errors.full_messages.each do |msg|
                     %li= msg
 
+          
+          %h3 The Job
+
           .row
             .col-md-6
               = f.label :job_title
@@ -18,7 +21,7 @@
           %br
 
           .row
-            .col-md-12
+            .col-md-10
               = f.label :description
               %p.text-muted Markdown can be used
               = f.text_area :description, rows: 10, class: 'form-control'
@@ -26,16 +29,16 @@
           %br
 
           .row
-            .col-md-12
-              = f.label :tagsd
-              %p.text-muted Separate with commas: Ruby on Rails, Ruby, CSS, Haml, Java
+            .col-md-10
+              = f.label :skill_tags
+              %p.text-muted Specific skill tags, ie. "Ruby on Rails, Ruby, CSS, Haml, Java"
               = f.text_field :tag_list, class: 'form-control'
 
           %br
 
           %hr
 
-          %h3.text-danger Organization
+          %h3 Organization
 
           .row
             .col-md-6
@@ -56,19 +59,15 @@
 
           %hr
 
-          %h3.text-danger Where to Apply
+          %h3 How to Apply
 
           .row
-            .col-md-6
-              = f.label :url
-              = f.text_field :url, class: 'form-control'
+            .col-md-10
+              %p.text-muted Explain how to apply, ie. "Please send a resume and cover letter to hr@example.com"
+              = f.text_area :how_to_apply, class: 'form-control'
 
-              %br
-
-              = f.label :email
-              = f.text_field :email, class: 'form-control'
 
 
               %br
               .actions
-                = f.submit 'Save'
+                = f.submit 'Save and Preview'
