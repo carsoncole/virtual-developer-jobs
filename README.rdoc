@@ -31,3 +31,10 @@ Applications sends through gmail.
 
 - User: ENV["GMAIL_USERNAME"]
 - Password: ENV["GMAIL_PASSWORD"]
+
+== Environment Variables
+
+export GMAIL_USERNAME="x"
+export GMAIL_PASSWORD="x"
+export HTTP_USER="x"
+export "HTTP_PASSWORD="x"
