@@ -22,11 +22,12 @@
 
       .job-description= Redcarpet::Markdown.new(Redcarpet::Render::HTML, extensions: {}).render(@job.description).html_safe
 
-      - if @job.how_to_apply
+      - unless @job.how_to_apply.blank?
 
-        %h3.h3 APPLY
+        .alert.alert-info
+          %h3.h3 APPLY
 
-        = @job.how_to_apply
+          = @job.how_to_apply.html_safe
 
 
       - if @job.published_at
