@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :notifications
   resources :payments
   resources :companies
   resources :jobs, only: [:show, :edit, :new, :update, :create, :destroy]
