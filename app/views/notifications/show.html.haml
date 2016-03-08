@@ -1,6 +1,7 @@
-%p#notice= notice
+.container
+  .row
+    .col-md-8
+      .alert.alert-info
+        %p= notice
 
-
-= link_to 'Edit', edit_notification_path(@notification)
-\|
-= link_to 'Back', notifications_path
+      %p= link_to "Back to all Jobs", root_path

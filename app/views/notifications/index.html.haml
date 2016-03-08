@@ -1,19 +1,25 @@
-%h1 Listing notifications
+.container
+  .row
+    .col-md-12
+      %h1 Notifications
 
-%table
-  %thead
-    %tr
-      %th
-      %th
-      %th
+      %table.table
+        %thead
+          %tr
+            %th
+            %th
+            %th
+            %th
 
-  %tbody
-    - @notifications.each do |notification|
-      %tr
-        %td= link_to 'Show', notification
-        %td= link_to 'Edit', edit_notification_path(notification)
-        %td= link_to 'Destroy', notification, :method => :delete, :data => { :confirm => 'Are you sure?' }
+        %tbody
+          - @notifications.each do |notification|
+            %tr
+              %td= notification.email
+              %td= notification.created_at.strftime("%B %e")
+              %td= link_to 'Show', notification
+              %td= link_to 'Edit', edit_notification_path(notification)
+              %td= link_to 'Destroy', notification, :method => :delete, :data => { :confirm => 'Are you sure?' }
 
-%br
+      %br
 
-= link_to 'New Notification', new_notification_path
+      = link_to 'New Notification', new_notification_path

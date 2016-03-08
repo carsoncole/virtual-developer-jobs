@@ -29,11 +29,9 @@ class NotificationsController < ApplicationController
 
     respond_to do |format|
       if @notification.save
-        format.html { redirect_to @notification, notice: 'Notification was successfully created.' }
-        format.json { render :show, status: :created, location: @notification }
+        format.html { redirect_to @notification, notice: "Success! We will notify you at #{@notification.email} when you jobs are posted." }
       else
         format.html { render :new }
-        format.json { render json: @notification.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -70,6 +68,6 @@ class NotificationsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def notification_params
-      params.fetch(:notification, {})
+      params.require(:notification).permit(:email)
     end
 end
