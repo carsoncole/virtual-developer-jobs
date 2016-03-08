@@ -1,5 +1,6 @@
 class PaymentsController < ApplicationController
   before_action :set_payment, only: [:show, :edit, :update, :destroy]
+  before_action :set_job, only: [:new, :edit]
 
   # GET /payments
   # GET /payments.json
@@ -15,6 +16,8 @@ class PaymentsController < ApplicationController
   # GET /payments/new
   def new
     @payment = Payment.new
+    @payment.is_paid_in_full = true
+    @payment.job_id = @job.id
   end
 
   # GET /payments/1/edit
@@ -25,9 +28,9 @@ class PaymentsController < ApplicationController
   # POST /payments.json
   def create
     @payment = Payment.new(payment_params)
-
     respond_to do |format|
       if @payment.save
+        @payment.job.update(published_at: Time.now)
         format.html { redirect_to @payment, notice: 'Payment was successfully created.' }
         format.json { render :show, status: :created, location: @payment }
       else
@@ -67,8 +70,12 @@ class PaymentsController < ApplicationController
       @payment = Payment.find(params[:id])
     end
 
+    def set_job
+      @job = Job.find(params[:job_id])
+    end
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def payment_params
-      params.fetch(:payment, {})
+      params.require(:payment).permit!
     end
 end

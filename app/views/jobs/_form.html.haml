@@ -24,23 +24,32 @@
 
         %br
 
+        .row
+          .col-md-12
+            = f.label :tagsd
+            %p.text-muted Separate with commas: Ruby on Rails, Ruby, CSS, Haml, Java
+            = f.text_field :tag_list, class: 'form-control'
+
+        %br
+
         %hr
 
-        %h3.text-danger Company
+        %h3.text-danger Organization
 
         .row
           .col-md-6
-            = f.label :company_name
+            = f.label :name
             = f.text_field :company_name, class: 'form-control'
 
             %br
 
-            = f.label :company_url
+            = f.label :url
             = f.text_field :company_url, class: 'form-control'        
 
             %br
 
-            = f.label :company_email
+            = f.label :email
+            %p.text-muted Reciept and all communications sent here
             = f.text_field :company_email, class: 'form-control'   
 
 

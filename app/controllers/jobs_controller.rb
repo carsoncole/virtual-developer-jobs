@@ -29,7 +29,7 @@ class JobsController < ApplicationController
 
     respond_to do |format|
       if @job.save
-        format.html { redirect_to job_path(@job)}
+        format.html { redirect_to job_path(@job, preview: true)}
       else
         format.html { render :new }
         format.json { render json: @job.errors, status: :unprocessable_entity }

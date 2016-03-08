@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
   resources :payments
   resources :companies
-  resources :jobs
+  resources :jobs, only: [:show, :edit, :new, :update, :create, :destroy]
+  resources :tag, only: [:index, :show]
   get 'welcome/index'
 
   # The priority is based upon order of creation: first created -> highest priority.

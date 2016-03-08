@@ -1,15 +1,17 @@
 .container
   .row
-    .col-md-10.col-md-offset-1
+    .col-md-12
 
       - unless @preview
-        %p= link_to "<< Back to all virtual Jobs", jobs_path
+        %p= link_to "<< Back to all Jobs", root_path
         %br
 
 
       - if @preview
         %h1
           STEP 2 - PREVIEW
+
+        %hr
 
       %h1.h1= @job.title
 
@@ -31,9 +33,10 @@
 
 
       - if @preview
-
+        %hr
         %br
-
+        = link_to 'Next Step: Payment', new_payment_path(job_id: @job.id)
+        \|
         = link_to 'Edit', edit_job_path(@job)
         \|
         = link_to 'Back', jobs_path

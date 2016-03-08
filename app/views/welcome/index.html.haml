@@ -2,37 +2,56 @@
   .row
     .col-md-2
     .col-md-8
-      %h3.h3.text-center Virtual Developer Jobs is focused on virtual/remote jobs for developers.
+      %p.text-center
+        Virtual Developer Jobs is a job site solely focused on virtual/remote jobs for developers working from home or anywhere. Organizations can find contractors expert in specific areas. 
+  .row
+    .col-md-6
+      .well.employers
+        %h3.h3.text-center.no-top-margin EMPLOYERS
+        .text-center
+          .text-center= button_to "Post a Job!", new_job_path, method: :get, class: 'pop btn navbar-btn btn-success'
+          %span.line-through $100 for 30 days
+          Free in March.
+      
+    .col-md-6
+      .well
+        %h3.h3.text-center.no-top-margin DEVELOPERS
+        .text-center
+          = link_to "Follow @VirtualDevJobs", "https://twitter.com/VirtualDevJobs", class: "twitter-follow-button", "data-show-count" => false, "data-size" => "large"
+
+        .text-center= link_to "Get notified of jobs", root_path
 
   .row
     .col-md-4
     .col-md-4
       .text-center
-        %p
-          = button_to "Post a Job!", new_job_path, method: :get, class: 'pop btn btn-lg btn-success'
-        $100 for 30 days.
+        
+        
 
   %br
 
 
 
   .row
-    .col-md-2
-    .col-md-8
-      %table.table
-        - @jobs.each do |job|
-          %tr
-            %td= link_to job.title, job
-            %td= link_to job.company_name, job
-            %td.text-right= distance_of_time_in_words_to_now(job.created_at)
+    .col-md-12
+      .table-responsive
+        %table.table.table-hover
+          %thead
+            %tr
+              %th Job
+              %th Skills
+              %th Organization
+              %th.text-right Posted
+          - @jobs.each do |job|
+            %tr
+              %td= link_to job.title, job
+              %td= job.tag_list
+              %td= link_to job.company_name, job
+              %td.text-right= job.published_at.strftime("%b %e")
 
-      %p= link_to "All virtual Jobs >>", jobs_path
-
-      %br
 
 
-
-      %p.text-center Follow us on Twitter @virtualdevjobs
+      
 
       
       
