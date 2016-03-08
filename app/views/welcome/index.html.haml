@@ -49,9 +49,9 @@
           - @jobs.each do |job|
             %tr
               %td
-                %strong= link_to job.title, job
-              %td= job.tag_list.to_s.truncate(150)
-              %td= link_to job.company_name, job
+                %strong= link_to job.title.truncate(40), job
+              %td= job.tag_list.to_s.truncate(40)
+              %td= link_to job.company_name.truncate(50), job
               %td.text-right= job.published_at.strftime("%b %e")
 
 

@@ -3,20 +3,11 @@ Carson Cole
 
 This application is an online job site for contract developers working virtually/remotely.
 
-Things you may want to cover:
-
 * Ruby version
+This application requires a Ruby version > 1.9 due to using Rails 4.2.5.
 
-* System dependencies
+=== Installation
 
-* Configuration
+- RAILS_ENV=production rake db:migrate
 
-* Database creation
-
-To keep things simple, the database used is Sqlite3.
-
-* Database initialization
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
+- RAILS_ENV=production rake assets:precompile
