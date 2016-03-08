@@ -6,6 +6,7 @@ class JobsController < ApplicationController
   # GET /jobs/1.json
   def show
     @preview = true if params[:preview]
+    @meta_keywords = @job.tag_list.to_s
   end
 
   # GET /jobs/new

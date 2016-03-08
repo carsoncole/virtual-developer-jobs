@@ -1,5 +1,15 @@
-%title Virtual Developer Jobs
+%meta{ charset: "UTF-8"}
+%title<
+  - if @job
+    = @job.title + ' | '
+  Virtual Developer Jobs
+
 %link{:href => 'https://fonts.googleapis.com/css?family=Roboto:400,300,700,900', :rel => 'stylesheet', :type => 'text/css'}
+%meta{:name => "viewport", :content => "width=device-width, initial-scale=1"}
+- unless @meta_keywords.blank?
+  %meta{ name: :keywords, content: @meta_keywords }
+%meta{ name: :Description, content: @meta || "Virtual Developer Jobs is a job site focused on virtual/remote job opportunities for engineers and developers globally."}
+%link{ rel: "canonical", href: "#{canonical}"}
 = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
 = javascript_include_tag 'application', 'data-turbolinks-track' => true
 = csrf_meta_tags
