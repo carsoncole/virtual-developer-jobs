@@ -1,11 +1,6 @@
 class JobsController < ApplicationController
+  http_basic_authenticate_with name: "carson", password: "password", except: :show
   before_action :set_job, only: [:show, :edit, :update, :destroy]
-
-  # GET /jobs
-  # GET /jobs.json
-  def index
-    @jobs = Job.all
-  end
 
   # GET /jobs/1
   # GET /jobs/1.json

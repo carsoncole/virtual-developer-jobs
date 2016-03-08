@@ -1,4 +1,5 @@
 class PaymentsController < ApplicationController
+  http_basic_authenticate_with name: "carson", password: "password", except: [:new, :create]
   before_action :set_payment, only: [:show, :edit, :update, :destroy]
   before_action :set_job, only: [:new, :edit]
 
@@ -31,7 +32,7 @@ class PaymentsController < ApplicationController
     respond_to do |format|
       if @payment.save
         @payment.job.update(published_at: Time.now)
-        format.html { redirect_to @payment, notice: 'Payment was successfully created.' }
+        format.html { redirect_to @payment, notice: 'Payment was successfully processed.' }
         format.json { render :show, status: :created, location: @payment }
       else
         format.html { render :new }

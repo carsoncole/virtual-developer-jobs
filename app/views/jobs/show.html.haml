@@ -1,6 +1,6 @@
 .container
   .row
-    .col-md-12
+    .col-md-10
 
       - unless @preview
         %p= link_to "<< Back to all Jobs", root_path
@@ -22,7 +22,6 @@
 
       = Redcarpet::Markdown.new(Redcarpet::Render::HTML, extensions: {}).render(@job.description).html_safe
 
-
       %h3.h3 APPLY
 
       - if @job.email
@@ -30,6 +29,12 @@
 
       - if @job.url
         %p= link_to @job.url
+
+
+      - if @job.published_at
+        %p.text-muted
+          Posted
+          = @job.published_at.strftime("%b %e")
 
 
       - if @preview

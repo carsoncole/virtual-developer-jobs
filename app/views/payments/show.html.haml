@@ -1,6 +1,7 @@
-%p#notice= notice
+.container
+  .row
+    .col-md-12
+      %p#notice= notice
 
 
-= link_to 'Edit', edit_payment_path(@payment)
-\|
-= link_to 'Back', payments_path
+      = link_to 'View Job Posting', job_path(@payment.job)
