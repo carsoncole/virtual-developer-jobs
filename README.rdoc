@@ -22,5 +22,12 @@ Uses Sqlite3.
 
 The application has basic authentication.
 
-- User: carson
-- Password: password
+- User: ENV["HTTP_USER"]
+- Password: ENV["HTTP_PASSWORD"]
+
+== Notifications
+
+Applications sends through gmail.
+
+- User: ENV["GMAIL_USERNAME"]
+- Password: ENV["GMAIL_PASSWORD"]

@@ -1,5 +1,5 @@
 class PaymentsController < ApplicationController
-  http_basic_authenticate_with name: "carson", password: "password", except: [:new, :create, :show]
+  http_basic_authenticate_with name: ENV["HTTP_USER"], password: ENV["HTTP_PASSWORD"], except: [:new, :create, :show]
   before_action :set_payment, only: [:show, :edit, :update, :destroy]
   before_action :set_job, only: [:new, :edit]
 

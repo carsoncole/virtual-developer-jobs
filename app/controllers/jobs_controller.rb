@@ -1,5 +1,5 @@
 class JobsController < ApplicationController
-  http_basic_authenticate_with name: "carson", password: "password", except: [:show, :new, :create]
+  http_basic_authenticate_with name: ENV["HTTP_USER"], password: ENV["HTTP_PASSWORD"], except: [:show, :new, :create]
   before_action :set_job, only: [:show, :edit, :update, :destroy]
 
   # GET /jobs/1

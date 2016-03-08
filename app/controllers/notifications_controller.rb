@@ -1,5 +1,5 @@
 class NotificationsController < ApplicationController
-  http_basic_authenticate_with name: "carson", password: "password", except: [:new, :create]
+  http_basic_authenticate_with name: ENV["HTTP_USER"], password: ENV["HTTP_PASSWORD"], except: [:new, :create]
   before_action :set_notification, only: [:show, :edit, :update, :destroy]
 
   # GET /notifications
@@ -29,7 +29,8 @@ class NotificationsController < ApplicationController
 
     respond_to do |format|
       if @notification.save
-        format.html { redirect_to @notification, notice: "Success! We will notify you at #{@notification.email} when you jobs are posted." }
+        NotificationMailer.create(@notification.id).deliver_now
+        format.html { redirect_to @notification, notice: "Success! We will notify you at #{@notification.email} as new jobs are posted." }
       else
         format.html { render :new }
       end
