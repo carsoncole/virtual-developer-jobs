@@ -22,6 +22,11 @@
 
       .job-description= Redcarpet::Markdown.new(Redcarpet::Render::HTML, extensions: {}).render(@job.description).html_safe
 
+      %h3.h3 SKILL TAGS
+      - if @job.tag_list.any?
+        - @job.tag_list.each do |tag|
+          .label.label-default=tag
+
       - unless @job.how_to_apply.blank?
 
         .alert.alert-info
@@ -31,6 +36,7 @@
 
 
       - if @job.published_at
+        %br
         %br
         %p.text-muted
           Job posted
