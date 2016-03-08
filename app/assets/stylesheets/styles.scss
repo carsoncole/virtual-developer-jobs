@@ -28,3 +28,23 @@
     color: #8AD143;
   }
 }
+
+.job-description {
+  p {
+    line-height: 1.333em;
+  }
+  h1, h2, h3, h4 {
+    margin-top: 1.5em;
+  }
+  h1 {
+    font-size: 2em;
+  }
+  h2 {
+    font-size: 1em;
+    font-weight: 700;
+  }
+  h3 {
+    font-size: 1em;
+    font-weight: 700;
+  }
+}

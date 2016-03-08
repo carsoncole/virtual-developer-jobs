@@ -20,20 +20,19 @@
 
       %br
 
-      = Redcarpet::Markdown.new(Redcarpet::Render::HTML, extensions: {}).render(@job.description).html_safe
+      .job-description= Redcarpet::Markdown.new(Redcarpet::Render::HTML, extensions: {}).render(@job.description).html_safe
 
-      %h3.h3 APPLY
+      - if @job.how_to_apply
 
-      - if @job.email
-        %p= mail_to @job.email
+        %h3.h3 APPLY
 
-      - if @job.url
-        %p= link_to @job.url
+        = @job.how_to_apply
 
 
       - if @job.published_at
+        %br
         %p.text-muted
-          Posted
+          Job posted
           = @job.published_at.strftime("%b %e")
 
 
@@ -45,3 +44,5 @@
         = link_to 'Edit', edit_job_path(@job)
         \|
         = link_to 'Back', jobs_path
+
+      %br
