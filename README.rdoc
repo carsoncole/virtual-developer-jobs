@@ -1,13 +1,26 @@
-== Virtual Developer Jobs
+= Virtual Developer Jobs
 Carson Cole
 
 This application is an online job site for contract developers working virtually/remotely.
 
-* Ruby version
-This application requires a Ruby version > 1.9 due to using Rails 4.2.5.
+== Requirements
 
-=== Installation
+=== Ruby
+Ruby version > 1.9 is required due to using Rails 4.2.5.
+
+=== Database
+Uses Sqlite3.
+
+
+== Installation
 
 - RAILS_ENV=production rake db:migrate
 
 - RAILS_ENV=production rake assets:precompile
+
+== Authentication
+
+The application has basic authentication.
+
+- User: carson
+- Password: password
