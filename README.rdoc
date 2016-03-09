@@ -27,14 +27,16 @@ The application has basic authentication.
 
 == Notifications
 
-Applications sends through gmail.
+Application notifications sends through gmail.
 
 - User: ENV["GMAIL_USERNAME"]
 - Password: ENV["GMAIL_PASSWORD"]
 
 == Environment Variables
+Environment variables are loaded from config/environment_variables.yml which is not stored in Git.
 
-export GMAIL_USERNAME="x"
-export GMAIL_PASSWORD="x"
-export HTTP_USER="x"
-export "HTTP_PASSWORD="x"
+Required variables:
+GMAIL_USERNAME
+GMAIL_PASSWORD
+HTTP_USER
+HTTP_PASSWORD
