@@ -22,6 +22,14 @@
 
       .job-description= Redcarpet::Markdown.new(Redcarpet::Render::HTML, extensions: {}).render(@job.description).html_safe
 
+      %br
+
+      %h3.h3 JOB DETAILS
+      %p
+        This job is a
+        = @job.is_full_time ? 'full time position' : 'part time position.'
+      
+
       %h3.h3 SKILL TAGS
       - if @job.skill_list.any?
         - @job.skill_list.each do |tag|
