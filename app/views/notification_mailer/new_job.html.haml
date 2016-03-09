@@ -1,8 +1,15 @@
 !!!
 %html
   %body
-    %p A new virtual job has been posted
+    %p A new virtual job has been posted.
 
-    %p= link_to ">> #{@job.title}", "http://VirtualDevelopmentJobs.com/jobs/#{@job.id}" 
+    %p
+      Company:
+      = @job.company_name
 
+    %p
+      Job link:
+      = link_to "#{@job.title}", "http://VirtualDevelopmentJobs.com/jobs/#{@job.id}" 
+
+    %br
     %p= link_to "VirtualDeveloperJobs.com", root_path
