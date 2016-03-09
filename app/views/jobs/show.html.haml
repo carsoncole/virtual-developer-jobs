@@ -25,9 +25,11 @@
       %br
 
       %h3.h3 JOB DETAILS
-      %p
-        This job is a
-        = @job.is_full_time ? 'full time position' : 'part time position.'
+      .label.label-info
+        Remote
+      &nbsp;
+      .label.label-info
+        = @job.is_full_time ? 'Full Time' : 'Part Time'
       
 
       %h3.h3 SKILL TAGS
