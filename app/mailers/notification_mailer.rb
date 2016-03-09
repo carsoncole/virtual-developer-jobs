@@ -3,9 +3,14 @@ class NotificationMailer < ActionMailer::Base
 
   def create(notification_id)
     @notification= Notification.find(notification_id)
-    Rails.logger.fatal "ENV['GMAIL_PASSWORD'] = #{ENV['GMAIL_PASSWORD']}"
-    Rails.logger.fatal "ENV['GMAIL_USERNAME'] = #{ENV['GMAIL_USERNAME']}"
     mail(to: @notification.email, subject: "You are signed up for job notifications")
+  end
+
+  def new_job(job_id)
+    @job = Job.find(job_id)
+    Notification.all.each do |notification|
+      mail(to: notification.email, subject: "NEW virtual job: #{@job.title}")
+    end
   end
 
 end

@@ -22,8 +22,8 @@ Uses Sqlite3.
 
 The application has basic authentication.
 
-- User: ENV["HTTP_USER"]
-- Password: ENV["HTTP_PASSWORD"]
+- User: AUTHENTICATION["HTTP_USER"]
+- Password: AUTHENTICATION["HTTP_PASSWORD"]
 
 == Notifications
 
