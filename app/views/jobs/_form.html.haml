@@ -59,6 +59,19 @@
 
           %hr
 
+          %h3 Job Details
+
+          .row
+            .col-md-6
+              = f.radio_button :is_full_time, true
+              = f.label :is_full_time, "Full time"
+
+              = f.radio_button :is_full_time, false
+              = f.label :is_full_time, "Part time"
+
+
+          %hr
+
           %h3 How to Apply
 
           .row

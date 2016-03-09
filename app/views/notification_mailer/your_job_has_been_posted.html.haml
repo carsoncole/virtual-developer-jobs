@@ -1,0 +1,11 @@
+!!!
+%html
+  %body
+    %p Your job has been approved and posted.
+
+    %p
+      Job link:
+      = link_to "#{@job.title}", "http://VirtualDevelopmentJobs.com/jobs/#{@job.id}" 
+
+    %br
+    %p= link_to "VirtualDeveloperJobs.com", root_path

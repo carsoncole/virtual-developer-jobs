@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160309052459) do
+ActiveRecord::Schema.define(version: 20160309215101) do
 
   create_table "jobs", force: :cascade do |t|
     t.string   "company_name",  null: false
@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(version: 20160309052459) do
     t.datetime "published_at"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
+    t.boolean  "is_full_time"
   end
 
   create_table "notifications", force: :cascade do |t|

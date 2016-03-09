@@ -6,7 +6,14 @@ class NotificationMailer < ActionMailer::Base
     mail(to: @notification.email, subject: "You are signed up for job notifications")
   end
 
-  def new_job(job_id)
+  def new_job_posted(job_id)
+    @job = Job.find(job_id)
+    Notification.all.each do |notification|
+      mail(to: notification.email, subject: "NEW virtual job: #{@job.title}")
+    end
+  end
+
+  def your_job_has_been_posted(job_id)
     @job = Job.find(job_id)
     Notification.all.each do |notification|
       mail(to: notification.email, subject: "NEW virtual job: #{@job.title}")
