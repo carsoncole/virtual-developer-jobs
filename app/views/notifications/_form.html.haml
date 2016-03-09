@@ -1,5 +1,5 @@
-.form-group
-  = form_for @notification do |f|
+= form_for @notification do |f|
+  .form-group
     - if @notification.errors.any?
       #error_explanation
         %h2= "#{pluralize(@notification.errors.count, "error")} prohibited this notification from being saved:"
@@ -11,4 +11,4 @@
     = f.text_field :email, placeholder: 'Email', class: 'form-control'
     %br
     .actions
-      = f.submit 'Notify me of future jobs', class: 'form-control btn pop'
+      = f.submit 'Notify me of future jobs', class: 'form-control btn btn-default pop'
