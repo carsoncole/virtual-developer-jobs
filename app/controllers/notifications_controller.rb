@@ -1,5 +1,5 @@
 class NotificationsController < ApplicationController
-  http_basic_authenticate_with name: AUTHENTICATE["HTTP_USER"], password: AUTHENTICATION["HTTP_PASSWORD"], except: [:new, :create, :show]
+  http_basic_authenticate_with name: AUTHENTICATION["HTTP_USER"], password: AUTHENTICATION["HTTP_PASSWORD"], except: [:new, :create, :show]
   before_action :set_notification, only: [:show, :edit, :update, :destroy]
 
   # GET /notifications
