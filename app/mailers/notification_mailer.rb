@@ -1,5 +1,5 @@
 class NotificationMailer < ActionMailer::Base
-  default :from => "\"Virtual Dev Jobs\" <VirtualDeveloperJobs@gmail.com>"
+  default :from => "\"Virtual Dev Jobs\" <VirtualDevelopmentJobs@gmail.com>"
 
   def create(notification_id)
     @notification= Notification.find(notification_id)

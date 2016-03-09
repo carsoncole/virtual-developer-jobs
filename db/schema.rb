@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160308181228) do
+ActiveRecord::Schema.define(version: 20160309052459) do
 
   create_table "jobs", force: :cascade do |t|
     t.string   "company_name",  null: false
@@ -21,11 +21,11 @@ ActiveRecord::Schema.define(version: 20160308181228) do
     t.text     "url"
     t.string   "email"
     t.text     "description"
+    t.text     "how_to_apply"
+    t.integer  "payment_id"
+    t.datetime "published_at"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
-    t.datetime "published_at"
-    t.integer  "payment_id"
-    t.text     "how_to_apply"
   end
 
   create_table "notifications", force: :cascade do |t|
@@ -35,11 +35,11 @@ ActiveRecord::Schema.define(version: 20160308181228) do
   end
 
   create_table "payments", force: :cascade do |t|
-    t.datetime "created_at",                                              null: false
-    t.datetime "updated_at",                                              null: false
     t.decimal  "amount",          precision: 8, scale: 2, default: 0.0
     t.boolean  "is_paid_in_full",                         default: false
     t.integer  "job_id"
+    t.datetime "created_at",                                              null: false
+    t.datetime "updated_at",                                              null: false
   end
 
   create_table "taggings", force: :cascade do |t|

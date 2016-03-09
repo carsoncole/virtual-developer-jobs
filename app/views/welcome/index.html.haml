@@ -30,31 +30,27 @@
     .col-md-4
       .text-center
         
-        
-
   %br
-
-
 
   .row
     .col-md-12
       .table-responsive
-        %table.table.table-hover
+        %table.table.table-hover.jobs
           %thead
             %tr
-              %th.text-muted Job
+              %th.job.text-muted Job
               %th.text-muted Skills
               %th.text-muted Organization
               %th.text-muted.text-right Posted
           - @jobs.each do |job|
             %tr
-              %td
+              %td.job
                 %strong= link_to job.title.truncate(40), job
               %td
-                - if job.tag_list.any?
-                  - job.tag_list[0..5].each do |tag|
-                    .label.label-default=tag
-                  - if job.tag_list.size > 6
+                - if job.skill_list.any?
+                  - job.skill_list[0..5].each do |tag|
+                    .label.label-default= tag
+                  - if job.skill_list.size > 6
                     = '...'
               %td= link_to job.company_name.truncate(50), job
               %td.text-right= job.published_at.strftime("%b %e")

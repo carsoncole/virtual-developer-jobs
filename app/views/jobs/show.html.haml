@@ -23,8 +23,8 @@
       .job-description= Redcarpet::Markdown.new(Redcarpet::Render::HTML, extensions: {}).render(@job.description).html_safe
 
       %h3.h3 SKILL TAGS
-      - if @job.tag_list.any?
-        - @job.tag_list.each do |tag|
+      - if @job.skill_list.any?
+        - @job.skill_list.each do |tag|
           .label.label-default=tag
         %br
         %br

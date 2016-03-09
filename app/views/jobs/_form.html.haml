@@ -32,7 +32,7 @@
             .col-md-10
               = f.label :skill_tags
               %p.text-muted Specific skill tags in decreasing importance, ie. "Ruby on Rails, Ruby, CSS, Haml, Java"
-              = f.text_field :tag_list, value: f.object.tag_list.join(","), class: 'form-control'
+              = f.text_field :skill_list, value: f.object.skill_list.join(","), class: 'form-control'
 
           %br
 

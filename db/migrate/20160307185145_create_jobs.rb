@@ -5,9 +5,10 @@ class CreateJobs < ActiveRecord::Migration
       t.string :company_url
       t.string :company_email
       t.string :title, null: false
-      t.text :url
-      t.string :email
       t.text :description
+      t.text :how_to_apply
+      t.integer :payment_id
+      t.datetime :published_at
       t.timestamps null: false
     end
   end

@@ -11,6 +11,12 @@
 }
 
 
+.table.jobs {
+  th.job, td.job {
+    width: 18em;
+  }
+}
+
 .line-through {
   display: inline;
   text-decoration: line-through;

@@ -6,7 +6,7 @@ class JobsController < ApplicationController
   # GET /jobs/1.json
   def show
     @preview = true if params[:preview]
-    @meta_keywords = @job.tag_list.to_s
+    @meta_keywords = @job.skill_list.to_s
   end
 
   # GET /jobs/new
@@ -65,6 +65,6 @@ class JobsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def job_params
-      params.require(:job).permit!
+      params.require(:job).permit(:company_name, :company_url, :company_email, :title, :url, :email, :description, :how_to_apply, :skill_list)
     end
 end
