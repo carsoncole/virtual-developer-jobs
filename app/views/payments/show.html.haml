@@ -1,7 +1,8 @@
 .container
   .row
     .col-md-12
+      %br
       %p#notice= notice
 
-
-      = link_to 'View Job Posting', job_path(@payment.job)
+      %br
+      %p= link_to 'View Job Posting', job_path(@payment.job)

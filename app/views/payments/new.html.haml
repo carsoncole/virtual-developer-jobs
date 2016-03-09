@@ -5,11 +5,28 @@
     .col-md-12
       %h1
         STEP 3 - Payment
+      %hr
+
+  .row
+    .col-md-3
+    .col-md-6
+      %table.table
+        %tr
+          %th 
+            Cost (USD)
+            %br
+            .text-muted Ads run for 30 days.
+          %td.text-right $100
+
+        %tr
+          %th Promo code
+          %td.text-right
+            = form_tag root_path do
+              = text_field :promo_code, :payment
+
 
       = render 'form'
 
-      %h2 Job postings are free in March.
 
       / # = button_to "Publish", root_path, method: :get
 
-      = link_to 'Back', payments_path
