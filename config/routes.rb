@@ -1,16 +1,19 @@
 Rails.application.routes.draw do
+  root 'welcome#index'
+  get 'sitemap/index'
   resources :notifications
   resources :payments
   resources :companies
   resources :jobs, only: [:show, :edit, :new, :update, :create, :destroy]
   resources :tag, only: [:index, :show]
   get 'welcome/index'
+  get '/sitemap', :to => 'sitemap#index', :as => :sitemap, :defaults => { :format => 'xml' }
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'welcome#index'
+
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
