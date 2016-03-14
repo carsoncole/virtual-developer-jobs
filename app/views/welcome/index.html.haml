@@ -61,7 +61,7 @@
               - if job.skill_list.size > 6
                 = '...'
 
-          %h4.h4.text-right= job.company_name.truncate(40)
+          %h4.h4.text-right= link_to job.company_name.truncate(40), job.company_url
 
 
 
