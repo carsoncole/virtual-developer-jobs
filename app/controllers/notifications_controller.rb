@@ -16,6 +16,7 @@ class NotificationsController < ApplicationController
   # GET /notifications/new
   def new
     @notification = Notification.new
+    @meta_title = "Get notified of new jobs"
   end
 
   # GET /notifications/1/edit

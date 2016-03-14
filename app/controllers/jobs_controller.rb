@@ -12,6 +12,7 @@ class JobsController < ApplicationController
   # GET /jobs/new
   def new
     @job = Job.new
+    @meta_title = 'Post a new Job'
   end
 
   # GET /jobs/1/edit

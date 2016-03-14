@@ -1,8 +1,10 @@
 %meta{ charset: "UTF-8"}
 %title<
-  - if @job && @job.title
-    = @job.title + ' | '
-  Virtual Developer Jobs
+  - if @meta_title
+    = @meta_title + ' |'
+  - elsif @job && @job.title
+    = @job.title + ' |'
+  &nbsp;Virtual Developer Jobs
 
 %link{:href => 'https://fonts.googleapis.com/css?family=Roboto:400,300,700,900', :rel => 'stylesheet', :type => 'text/css'}
 %meta{:name => "viewport", :content => "width=device-width, initial-scale=1"}
