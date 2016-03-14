@@ -25,35 +25,44 @@
 
         .text-center= link_to "Get notified of jobs",  new_notification_path
 
-  .row
-    .col-md-4
-    .col-md-4
-      .text-center
-        
   %br
 
   .row
-    .col-md-12
-      .table-responsive
-        %table.table.table-hover.jobs
-          %thead
-            %tr
-              %th.job.text-muted Job
-              %th.text-muted Skills
-              %th.text-muted Organization
-              %th.text-muted.text-right Posted
-          - @jobs.each do |job|
-            %tr
-              %td.job
-                %strong= link_to job.title.truncate(40), job
-              %td
-                - if job.skill_list.any?
-                  - job.skill_list[0..5].each do |tag|
-                    .label.label-default= tag
-                  - if job.skill_list.size > 6
-                    = '...'
-              %td= link_to job.company_name.truncate(50), job
-              %td.text-right= job.published_at.strftime("%b %e")
+    / .col-md-12
+    /   .table-responsive
+    /     %table.table.table-hover.jobs
+    /       %thead
+    /         %tr
+    /           %th.job.text-muted Job
+    /           %th.text-muted Skills
+    /           %th.text-muted Organization
+    /           %th.text-muted.text-right Posted
+    /       - @jobs.each do |job|
+    /         %tr
+    /           %td.job
+    /             %strong= link_to job.title.truncate(40), job
+    /           %td
+    /             - if job.skill_list.any?
+    /               - job.skill_list[0..5].each do |tag|
+    /                 .label.label-default= tag
+    /               - if job.skill_list.size > 6
+    /                 = '...'
+    /           %td= link_to job.company_name.truncate(50), job
+    /           %td.text-right= job.published_at.strftime("%b %e")
+
+    - for job in @jobs
+      .col-md-4
+        .well.job
+          %h2.h2.no-top-margin= link_to job.title.truncate(40), job
+          .skill-tags.text-center
+            - if job.skill_list.any?
+              - job.skill_list[0..5].each do |tag|
+                .label.label-default= tag
+              - if job.skill_list.size > 6
+                = '...'
+
+          %h4.h4.text-right= job.company_name.truncate(40)
+
 
 
 

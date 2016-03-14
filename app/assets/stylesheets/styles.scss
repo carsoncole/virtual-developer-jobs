@@ -1,5 +1,4 @@
 * {
-   font-size: 18px;
    line-height: 1.333;
    font-family: Roboto, helvetica, sans-serif
 }
@@ -20,6 +19,21 @@
 .table.jobs {
   th.job, td.job {
     width: 18em;
+  }
+}
+
+.skill-tags {
+  line-height: 1.5em;
+}
+
+.job {
+  .label {
+  font-weight: 400;
+  font-size: 1.1em;
+  line-height: 2em;
+  }
+  h2 {
+    font-size: 2em;
   }
 }
 
