@@ -28,10 +28,25 @@ body {
   }
 }
 
+.link-unstyled {
+  color: inherit;
+  text-decoration: inherit;
+}
+
+.link-unstyled:link {
+  color: inherit;
+  text-decoration: inherit;
+}
+
+.link-unstyled:hover {
+  color: inherit;
+  text-decoration: inherit;
+}
+
+
 .card {
   .card-header h5 {
   margin-bottom: 0;
-  font-size: 1.15em;
   }
 }
 
