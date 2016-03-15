@@ -3,8 +3,9 @@
     .col-md-10
 
       - unless @preview
-        %p= link_to "<< Back to all Jobs", root_path
         %br
+        %p= link_to "<< Back to all Jobs", root_path
+        
 
 
       - if @preview
@@ -13,9 +14,9 @@
 
         %hr
 
-      %h1.h1= @job.title
+      %h2.h2= @job.title
 
-      %h2.h2= @job.company_name
+      %h4.h4= @job.company_name
       %p= link_to @job.company_url
 
       %br
@@ -24,7 +25,7 @@
 
       %br
 
-      %h3.h3 JOB DETAILS
+      %h4.h4 JOB DETAILS
       .label.label-info
         Remote
       &nbsp;
@@ -32,7 +33,9 @@
         = @job.is_full_time ? 'Full Time' : 'Part Time'
       
 
-      %h3.h3 SKILL TAGS
+      %br
+      %br
+      %h4.h4 SKILL TAGS
       - if @job.skill_list.any?
         - @job.skill_list.each do |tag|
           .label.label-default=tag
