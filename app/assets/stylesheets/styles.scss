@@ -1,6 +1,22 @@
 * {
    line-height: 1.333;
-   font-family: Roboto, helvetica, sans-serif
+   font-family: Roboto, helvetica, sans-serif;
+}
+
+body {
+  background: #666666;
+}
+
+.title {
+  color: #ffffff;
+  line-height: 2em;
+  font-size: 2em;
+}
+
+.navbar-brand {
+  a {
+  color: #ffffff;
+  }
 }
 
 .pop {
@@ -10,6 +26,7 @@
 }
 
 .logo {
+
   font-size: 1.3em;
   display: inline;
   font-weight: 900;

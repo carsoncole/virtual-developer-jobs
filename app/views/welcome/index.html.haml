@@ -2,8 +2,8 @@
   .row
     .col-md-2
     .col-md-8
-      %h2.text-center.no-top-margin
-        Virtual Developer Jobs is a virtual/remote jobs site for developers working remotely, and for organizations that want to look globally, not just locally.
+      %h2.text-xs-center.title
+        Remote Jobs for Developers.
 
 
 = render 'payments/march_madness'
@@ -11,19 +11,21 @@
 .container
   .row
     .col-md-6
-      .well.employers
-        %h3.h3.text-center.no-top-margin EMPLOYERS
-        %p.text-center Post your virtual job.
-        .text-center= button_to "Post a Job! - $100/30 days", new_job_path, method: :get, class: 'pop btn btn-lg navbar-btn btn-success'
+      .card.employers
+        .card-block
+          %h3.h3.text-xs-center.no-top-margin EMPLOYERS
+          %p.text-xs-center Post your virtual job.
+          .text-xs-center= button_to "Post a Job! - $100/30 days", new_job_path, method: :get, class: 'pop btn btn-lg navbar-btn btn-success'
       
     .col-md-6
-      .well
-        %h3.h3.text-center.no-top-margin DEVELOPERS
-        %p.text-center Find your virtual job.
-        .text-center
-          = link_to "Follow @VirtualDevJobs", "https://twitter.com/VirtualDevJobs", class: "twitter-follow-button", "data-show-count" => false, "data-size" => "large"
+      .card
+        .card-block
+          %h3.h3.text-xs-center.no-top-margin DEVELOPERS
+          %p.text-xs-center Find your virtual job.
+          .text-xs-center
+            = link_to "Follow @VirtualDevJobs", "https://twitter.com/VirtualDevJobs", class: "twitter-follow-button", "data-show-count" => false, "data-size" => "large"
 
-        .text-center= link_to "Get notified of jobs",  new_notification_path
+          .text-xs-center= link_to "Get notified of jobs",  new_notification_path
 
   %br
 
@@ -50,20 +52,26 @@
     /           %td= link_to job.company_name.truncate(50), job
     /           %td.text-right= job.published_at.strftime("%b %e")
 
+    %br
+
     - for job in @jobs
       .col-md-4
-        .well.job
-          %h2.h2.no-top-margin= link_to job.title.truncate(40), job
-          .skill-tags.text-center
-            - if job.skill_list.any?
-              - job.skill_list[0..5].each do |tag|
-                .label.label-default= tag
-              - if job.skill_list.size > 6
-                = '...'
-
-          %h4.h4.text-right= link_to job.company_name.truncate(40), job.company_url
-
-
+        .card
+          .card-header.text-xs-center
+            = link_to job.title.truncate(40), job
+          .card-block
+            / %h4.h4.card-title= link_to job.title.truncate(40), job
+            .card-text.skill-tags
+              .text-xs-center
+                - if job.skill_list.any?
+                  - job.skill_list[0..5].each do |tag|
+                    .label.label-default= tag
+                  - if job.skill_list.size > 6
+                    = '...'
+              %br
+              .text-xs-center= link_to job.company_name.truncate(40), job.company_url, class: 'card-link'
+          .card-footer.text-xs-center
+            = job.published_at.strftime('%b-%e')
 
 
       
