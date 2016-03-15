@@ -13,7 +13,7 @@
     .col-md-6
       .card.employers
         .card-block
-          %h3.h3.text-xs-center.no-top-margin EMPLOYERS
+          %h3.h3.text-xs-center.no-top-margin.bg-lighten EMPLOYERS
           %p.text-xs-center Post your virtual job.
           .text-xs-center= button_to "Post a Job! - $100/30 days", new_job_path, method: :get, class: 'pop btn btn-lg navbar-btn btn-success'
       
@@ -58,7 +58,7 @@
       .col-md-4
         .card
           .card-header.text-xs-center
-            = link_to job.title.truncate(40), job
+            %h4.h4= link_to job.title.truncate(40), job
           .card-block
             / %h4.h4.card-title= link_to job.title.truncate(40), job
             .card-text.skill-tags
@@ -70,11 +70,12 @@
                     = '...'
               %br
               .text-xs-center= link_to job.company_name.truncate(40), job.company_url, class: 'card-link'
-          .card-footer.text-xs-center
-            = job.published_at.strftime('%b-%e')
+            %p.card-text.text-xs-center
+              %small.text-muted
+                = job.published_at.strftime('%b-%e')
 
 
-      
+          
 
       
       
