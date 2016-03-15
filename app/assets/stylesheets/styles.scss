@@ -3,8 +3,15 @@
    font-family: Roboto, helvetica, sans-serif;
 }
 
+@media (min-width: 1250px) {
+    .container{
+        max-width: 1230px;
+    }
+}
+
 body {
-  background: #666666;
+  font-size: 14px;
+  background:  rgb(245, 248, 250);
 }
 
 .title {
@@ -20,8 +27,9 @@ body {
 }
 
 .card {
-  .card-header h4 {
+  .card-header h5 {
   margin-bottom: 0;
+  font-size: 1.15em;
   }
 }
 
@@ -49,16 +57,6 @@ body {
   line-height: 1.5em;
 }
 
-.job {
-  .label {
-  font-weight: 400;
-  font-size: 1.1em;
-  line-height: 2em;
-  }
-  h2 {
-    font-size: 1.8em;
-  }
-}
 
 #error_explanation {
   padding: 0.5em;

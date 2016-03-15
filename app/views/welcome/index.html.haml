@@ -1,23 +1,44 @@
-.container
-  .row
-    .col-md-2
-    .col-md-8
-      %h2.text-xs-center.title
-        Remote Jobs for Developers.
-
+%br
 
 = render 'payments/march_madness'
 
 .container
   .row
-    .col-md-6
+    .col-md-8
+      .row
+        - for job in @jobs
+          .col-md-6
+            .card
+              .card-header.text-xs-center
+                %h5.h5= link_to job.title.truncate(40), job
+              .card-block
+                / %h4.h4.card-title= link_to job.title.truncate(40), job
+                .card-text.skill-tags
+                  .text-xs-center
+                    - if job.skill_list.any?
+                      - job.skill_list[0..5].each do |tag|
+                        .label.label-default= tag
+                      - if job.skill_list.size > 6
+                        = '...'
+                  %br
+                  .text-xs-center= link_to job.company_name.truncate(40), job.company_url, class: 'card-link'
+                %p.card-text.text-xs-center
+                  %small.text-muted
+                    = job.published_at.strftime('%b-%e')
+
+
+        
+    .col-md-4
       .card.employers
         .card-block
-          %h3.h3.text-xs-center.no-top-margin.bg-lighten EMPLOYERS
-          %p.text-xs-center Post your virtual job.
-          .text-xs-center= button_to "Post a Job! - $100/30 days", new_job_path, method: :get, class: 'pop btn btn-lg navbar-btn btn-success'
-      
-    .col-md-6
+          %h3.h3.text-xs-center.no-top-margin EMPLOYERS
+          %p.text-xs-center
+            Post your virtual job.
+            %br
+            $100/30 days
+          .text-xs-center= button_to "Post a Job!", new_job_path, method: :get, class: 'pop btn navbar-btn btn-success'
+          
+        
       .card
         .card-block
           %h3.h3.text-xs-center.no-top-margin DEVELOPERS
@@ -25,57 +46,7 @@
           .text-xs-center
             = link_to "Follow @VirtualDevJobs", "https://twitter.com/VirtualDevJobs", class: "twitter-follow-button", "data-show-count" => false, "data-size" => "large"
 
-          .text-xs-center= link_to "Get notified of jobs",  new_notification_path
-
-  %br
-
-  .row
-    / .col-md-12
-    /   .table-responsive
-    /     %table.table.table-hover.jobs
-    /       %thead
-    /         %tr
-    /           %th.job.text-muted Job
-    /           %th.text-muted Skills
-    /           %th.text-muted Organization
-    /           %th.text-muted.text-right Posted
-    /       - @jobs.each do |job|
-    /         %tr
-    /           %td.job
-    /             %strong= link_to job.title.truncate(40), job
-    /           %td
-    /             - if job.skill_list.any?
-    /               - job.skill_list[0..5].each do |tag|
-    /                 .label.label-default= tag
-    /               - if job.skill_list.size > 6
-    /                 = '...'
-    /           %td= link_to job.company_name.truncate(50), job
-    /           %td.text-right= job.published_at.strftime("%b %e")
-
-    %br
-
-    - for job in @jobs
-      .col-md-4
-        .card
-          .card-header.text-xs-center
-            %h4.h4= link_to job.title.truncate(40), job
-          .card-block
-            / %h4.h4.card-title= link_to job.title.truncate(40), job
-            .card-text.skill-tags
-              .text-xs-center
-                - if job.skill_list.any?
-                  - job.skill_list[0..5].each do |tag|
-                    .label.label-default= tag
-                  - if job.skill_list.size > 6
-                    = '...'
-              %br
-              .text-xs-center= link_to job.company_name.truncate(40), job.company_url, class: 'card-link'
-            %p.card-text.text-xs-center
-              %small.text-muted
-                = job.published_at.strftime('%b-%e')
-
-
-          
+          .text-xs-center= link_to "Get notified of jobs",  new_notification_path  
 
       
       
