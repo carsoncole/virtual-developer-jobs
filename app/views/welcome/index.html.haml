@@ -1,33 +1,13 @@
 .container
   .row
-    .col-md-9
-      .card-columns
-        - for job in @jobs
-          .card
-            .card-block
-              %h5.h5= link_to job.title.truncate(40), job_path(job), class: 'link-unstyled'
-              / %h4.h4.card-title= link_to job.title.truncate(40), job
-              %p= link_to job.company_name.truncate(40), job.company_url, class: 'card-link link-unstyled'
-              .card-text.skill-tags
-                - if job.skill_list.any?
-                  - job.skill_list[0..7].each do |tag|
-                    .label.label-default= tag
-                  - if job.skill_list.size > 8
-                    = '...'
-              %p.card-text
-                %small.text-muted
-                  Posted:
-                  = job.published_at.strftime('%b-%e')
-
-
-        
+    .col-md-6
     .col-md-3
       .card.employers
         .card-block
           %h5.h5.text-xs-center.no-top-margin EMPLOYERS
           .text-xs-center= button_to "Post a Job FREE!", new_job_path, method: :get, class: 'pop btn navbar-btn btn-success'
           
-        
+    .col-md-3
       .card
         .card-block
           %h5.h5.text-xs-center.no-top-margin DEVELOPERS
@@ -36,5 +16,32 @@
 
           .text-xs-center= link_to "Get notified of jobs",  new_notification_path  
 
-      
+    
+
+
+  .row
+    .col-md-12
+      .card-columns
+        - for job in @jobs
+          .card
+            .card-block
+              %h2.job-title= link_to job.title.truncate(40), job_path(job), class: 'link-unstyled'
+              / %h4.h4.card-title= link_to job.title.truncate(40), job
+              .job-company= link_to job.company_name.truncate(40), job.company_url, class: 'card-link link-unstyled'
+              %p.card-text
+                %small.text-muted
+                  Posted:
+                  = job.published_at.strftime('%b-%e')
+
+              .card-text.skill-tags
+                - if job.skill_list.any?
+                  - job.skill_list[0..7].each do |tag|
+                    .label.label-default= tag
+                  - if job.skill_list.size > 8
+                    = '...'
+
+
+
+        
+  
       

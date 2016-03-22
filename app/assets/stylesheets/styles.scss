@@ -65,6 +65,17 @@ body {
   letter-spacing: 0.01625em;
 }
 
+h2.job-title {
+  margin: 0;
+  font-size: 1.45em;
+  font-weight: 300;
+}
+
+.job-company {
+  font-size: 1em;
+  font-weight: 700;
+}
+
 .table.jobs {
   th.job, td.job {
     width: 18em;
