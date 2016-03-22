@@ -19,8 +19,11 @@
       %h4.h4= @job.company_name
       %p= link_to @job.company_url
 
-      
-      %p= @job.slug
+      - if @job.published_at
+        %br
+        %p.text-muted
+          Job posted
+          = @job.published_at.strftime("%b %e")
 
       %br
 
@@ -53,12 +56,7 @@
           = @job.how_to_apply.html_safe
 
 
-      - if @job.published_at
-        %br
-        %br
-        %p.text-muted
-          Job posted
-          = @job.published_at.strftime("%b %e")
+
 
 
       - if @preview
