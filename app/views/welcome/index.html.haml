@@ -4,12 +4,12 @@
 
 .container
   .row
-    .col-md-8
+    .col-md-9
       .card-columns
         - for job in @jobs
           .card
             .card-block
-              %h6.h6= link_to job.title.truncate(40), job_path(job), class: 'link-unstyled'
+              %h5.h5= link_to job.title.truncate(40), job_path(job), class: 'link-unstyled'
               / %h4.h4.card-title= link_to job.title.truncate(40), job
               .card-text.skill-tags
                 - if job.skill_list.any?
@@ -26,11 +26,11 @@
 
 
         
-    .col-md-4
+    .col-md-3
       .card.employers
         .card-block
-          %h3.h3.text-xs-center.no-top-margin EMPLOYERS
-          %p.text-xs-center
+          %h5.h5.text-xs-center.no-top-margin EMPLOYERS
+          %p.text-xs-center.text-muted
             Post your virtual job.
             %br
             $100/30 days
@@ -39,8 +39,8 @@
         
       .card
         .card-block
-          %h3.h3.text-xs-center.no-top-margin DEVELOPERS
-          %p.text-xs-center Find your virtual job.
+          %h5.h5.text-xs-center.no-top-margin DEVELOPERS
+          %p.text-xs-center.text-muted Find your virtual job.
           .text-xs-center
             = link_to "Follow @VirtualDevJobs", "https://twitter.com/VirtualDevJobs", class: "twitter-follow-button", "data-show-count" => false, "data-size" => "large"
 
