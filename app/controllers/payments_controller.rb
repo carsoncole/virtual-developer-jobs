@@ -32,7 +32,7 @@ class PaymentsController < ApplicationController
     respond_to do |format|
       if @payment.save
         @payment.job.update(published_at: Time.now)
-        format.html { redirect_to @payment, notice: 'Payment was successfully processed.' }
+        format.html { redirect_to @payment, notice: 'Job was successfully submitted.' }
         format.json { render :show, status: :created, location: @payment }
       else
         format.html { render :new }

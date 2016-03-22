@@ -1,4 +1,3 @@
-= render 'payments/march_madness'
 
 .container
   .row
@@ -16,13 +15,13 @@
             Cost (USD)
             %br
             .text-muted Ads run for 30 days.
-          %td.text-right $100
+          %td.text-right FREE
 
-        %tr
-          %th Promo code
-          %td.text-right
-            = form_tag root_path do
-              = text_field :promo_code, :payment
+        / %tr
+        /   %th Promo code
+        /   %td.text-right
+        /     = form_tag root_path do
+        /       = text_field :promo_code, :payment
 
 
       = render 'form'
