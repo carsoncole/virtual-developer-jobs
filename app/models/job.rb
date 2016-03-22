@@ -1,5 +1,9 @@
 class Job < ActiveRecord::Base
   acts_as_taggable_on :skills
+
+  extend FriendlyId
+  friendly_id :title, use: :slugged
+
   has_one :payment
   after_save :send_your_job_has_been_posted_notification!, if: Proc.new {|job| job.published_at_changed? && job.published_at > Time.now - 20.minutes}
   after_save :send_new_job_posted_notification!, if: Proc.new {|job| job.published_at_changed? && job.published_at > Time.now - 20.minutes}

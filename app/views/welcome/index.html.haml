@@ -9,7 +9,7 @@
         - for job in @jobs
           .card
             .card-block
-              %h6.h6= link_to job.title.truncate(40), job, class: 'link-unstyled'
+              %h6.h6= link_to job.title.truncate(40), job_path(job), class: 'link-unstyled'
               / %h4.h4.card-title= link_to job.title.truncate(40), job
               .card-text.skill-tags
                 - if job.skill_list.any?

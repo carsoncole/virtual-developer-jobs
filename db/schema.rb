@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160309215101) do
+ActiveRecord::Schema.define(version: 20160322172735) do
 
   create_table "jobs", force: :cascade do |t|
     t.string   "company_name",  null: false
@@ -27,7 +27,10 @@ ActiveRecord::Schema.define(version: 20160309215101) do
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
     t.boolean  "is_full_time"
+    t.string   "slug"
   end
+
+  add_index "jobs", ["slug"], name: "index_jobs_on_slug", unique: true
 
   create_table "notifications", force: :cascade do |t|
     t.string   "email",      null: false

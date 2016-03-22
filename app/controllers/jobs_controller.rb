@@ -1,5 +1,6 @@
 class JobsController < ApplicationController
   http_basic_authenticate_with name: AUTHENTICATION["HTTP_USER"], password: AUTHENTICATION["HTTP_PASSWORD"], except: [:show, :new, :create]
+
   before_action :set_job, only: [:show, :edit, :update, :destroy]
 
   # GET /jobs/1
@@ -61,7 +62,7 @@ class JobsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_job
-      @job = Job.find(params[:id])
+      @job = Job.friendly.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

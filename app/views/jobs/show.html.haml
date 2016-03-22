@@ -1,9 +1,9 @@
 .container
   .row
     .col-md-10
-
+      %br
       - unless @preview
-        %br
+        
         %p= link_to "<< Back to all Jobs", root_path
         
 
@@ -18,6 +18,9 @@
 
       %h4.h4= @job.company_name
       %p= link_to @job.company_url
+
+      
+      %p= @job.slug
 
       %br
 
