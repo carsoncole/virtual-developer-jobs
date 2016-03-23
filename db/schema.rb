@@ -18,8 +18,6 @@ ActiveRecord::Schema.define(version: 20160322172735) do
     t.string   "company_url"
     t.string   "company_email"
     t.string   "title",         null: false
-    t.text     "url"
-    t.string   "email"
     t.text     "description"
     t.text     "how_to_apply"
     t.integer  "payment_id"

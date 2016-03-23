@@ -1,6 +1,6 @@
-.navbar.navbar-dark.bg-primary
-  .container
-    %span
-      .navbar-brand
-        = link_to "VDJ", root_path, class: 'logo'
-        = link_to "Virtual Developer Jobs", root_path, class: 'hidden-sm hidden-xs'
+/ .navbar.navbar-dark.bg-primary
+.navbar.navbar-dark.bg-inverse
+  = link_to "Virtual Developer Jobs", root_path, class: 'navbar-brand'
+  %ul.nav.navbar-nav
+    %li.nav-item= link_to "Developers", developers_path, class: 'nav-link'
+    %li.nav-item= link_to "Employers", employers_path, class: 'nav-link'

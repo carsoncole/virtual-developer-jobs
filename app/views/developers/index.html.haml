@@ -1,0 +1,17 @@
+.container
+  .row
+    .col-md-5
+      %br
+
+      %h1 Developers
+
+      %br
+      %p All jobs are posted on Twitter.
+      %p= link_to "Follow @VirtualDevJobs", "https://twitter.com/VirtualDevJobs", class: "twitter-follow-button", "data-show-count" => false, "data-size" => "large"
+
+      %br
+      %p We can also email you as soon as a new job is posted.
+      %p= link_to "Click here to get notified of new jobs",  new_notification_path
+
+      %br
+      %p= link_to "<< Back to Jobs", root_path

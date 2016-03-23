@@ -1,25 +1,5 @@
 .container
   .row
-    .col-md-6
-    .col-md-3
-      .card.employers
-        .card-block
-          %h5.h5.text-xs-center.no-top-margin EMPLOYERS
-          .text-xs-center= button_to "Post a Job FREE!", new_job_path, method: :get, class: 'pop btn navbar-btn btn-success'
-          
-    .col-md-3
-      .card
-        .card-block
-          %h5.h5.text-xs-center.no-top-margin DEVELOPERS
-          .text-xs-center
-            = link_to "Follow @VirtualDevJobs", "https://twitter.com/VirtualDevJobs", class: "twitter-follow-button", "data-show-count" => false, "data-size" => "large"
-
-          .text-xs-center= link_to "Get notified of jobs",  new_notification_path  
-
-    
-
-
-  .row
     .col-md-12
       .card-columns
         - for job in @jobs
@@ -42,6 +22,5 @@
 
 
 
-        
-  
-      
+
+

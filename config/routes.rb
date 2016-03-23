@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   root 'welcome#index'
   get 'sitemap/index'
   resources :notifications
-  resources :payments
+  resources :payments, :developers, :employers
   resources :companies
   resources :jobs, only: [:show, :edit, :new, :update, :create, :destroy]
   resources :tag, only: [:index, :show]
