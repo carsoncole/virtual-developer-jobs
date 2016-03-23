@@ -5,13 +5,13 @@
         - for job in @jobs
           .card
             .card-block
-              %h2.job-title= link_to job.title.truncate(40), job_path(job), class: 'link-unstyled'
+              %h6.card-title= link_to job.company_name.truncate(40), job.company_url
+
+              %h4.card-subtitle= link_to job.title.truncate(40), job_path(job)
               / %h4.h4.card-title= link_to job.title.truncate(40), job
-              .job-company= link_to job.company_name.truncate(40), job.company_url, class: 'card-link link-unstyled'
               %p.card-text
-                %small.text-muted
-                  Posted:
-                  = job.published_at.strftime('%b-%e')
+                Posted:
+                = job.published_at.strftime('%b-%e')
 
               .card-text.skill-tags
                 - if job.skill_list.any?
