@@ -10,19 +10,25 @@
 
   %br
 
+
+
+
   .row
     .col-md-12
       .card-columns
         - for job in @jobs
-          .card
+          .card.job
             .card-block
-              %h6.card-title= link_to job.company_name.truncate(40), job.company_url
+              %h4.card-title= link_to job.company_name.truncate(40), job.company_url
 
-              %h4.card-subtitle= link_to job.title.truncate(40), job_path(job)
+              %h2.card-subtitle= link_to job.title.truncate(40), job_path(job)
               / %h4.h4.card-title= link_to job.title.truncate(40), job
               %p.card-text
                 Posted:
                 = job.published_at.strftime('%b-%e')
+
+              .job-description
+                = job.description
 
               .card-text.skill-tags
                 - if job.skill_list.any?
@@ -32,6 +38,9 @@
                     = '...'
 
 
-
+#card-description
+  Hello
+  %br
+  Good bye
 
 

@@ -1,6 +1,6 @@
 * {
    line-height: 1.333;
-   font-family: Asap, helvetica, sans-serif;
+   font-family: Lato, helvetica, sans-serif;
 }
 
 
@@ -11,11 +11,40 @@
 }
 
 body {
-  font-size: 16px;
+  font-size: 15px;
+  font-weight: 300;
   background:  rgb(245, 248, 250);
 }
 .navbar { border-radius: 0; }
 
+#card-description {
+  visibility: hidden;
+}
+
+
+h2, h3, h4 {
+  font-weight: 300;
+}
+
+h1 {
+  font-size: 1.9em;
+}
+
+h2 {
+  font-size: 1.7em;
+}
+
+h3 {
+  font-size: 1.25em;
+}
+
+h4 {
+  font-size: 1.1em;
+}
+
+.label {
+  font-weight: 300;
+}
 
 .navbar-brand {
   font-size: 1.5em;
