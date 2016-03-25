@@ -17,7 +17,14 @@
       %h2.h2= @job.title
 
       %h4.h4= @job.company_name
-      %p= link_to @job.company_url
+      
+      %p
+        = link_to @job.company_url
+        %br
+        - if @job.employer_careers_url
+            Careers site:
+            = link_to @job.employer_careers_url
+
 
       - if @job.published_at
         %br
@@ -32,6 +39,11 @@
       %br
 
       %h4.h4 JOB DETAILS
+      - if @job.job_url
+        %p
+          Job URL:
+          = link_to @job.job_url
+
       .label.label-info
         Remote
       &nbsp;

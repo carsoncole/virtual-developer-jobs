@@ -21,6 +21,18 @@
           %br
 
           .row
+            .col-md-6
+              = f.label :job_url
+              = f.text_field :job_url, class: 'form-control'
+          %br
+
+          .row
+            .col-md-6
+              = f.label :employer_careers_url
+              = f.text_field :employer_careers_url, class: 'form-control'
+          %br
+
+          .row
             .col-md-10
               = f.label :description
               %p.text-muted Markdown, ie. (## Section headings - h2##, '-' for bullets)
