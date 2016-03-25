@@ -1,16 +1,5 @@
-.container-fluid
-  %nav.navbar.navbar-default
-    = link_to "Virtual Developer Jobs", root_path, class: 'navbar-brand'
-    .navbar-header
-      %button.navbar-toggle.collapsed(type='button' data-toggle="collapse" data-target="#bs-example-navbar-collapse-1")
-        %span.sr-only Hello
-        %span.icon-bar
-        %span.icon-bar
-        %span.icon-bar
-
-
-      = #link_to "Virtual Developer Jobs", root_path, class: 'hidden-sm hidden-xs'
-    .collapse.navbar-collapse#bs-example-navbar-collapse-1
-      %ul.nav.navbar-nav
-        %li LINK
-        %li LINK
+.navbar.navbar-dark.bg-inverse
+  = link_to "Virtual Developer Jobs", root_path, class: 'navbar-brand'
+  %ul.nav.navbar-nav
+    %li.nav-item= link_to "Developers", developers_path, class: 'nav-link'
+    %li.nav-item= link_to "Employers", employers_path, class: 'nav-link'

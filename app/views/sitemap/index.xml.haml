@@ -1,6 +1,37 @@
 !!! XML
 %urlset{:xmlns => "http://www.sitemaps.org/schemas/sitemap/0.9"}
 
+  %url
+    %loc
+      https://virtualdeveloperjobs.com/employers/
+    %lastmod
+      = File.mtime('app/views/employers/index.html.haml').to_date.to_s
+    %changefreq
+      weekly
+    %priority
+      0.5
+
+  %url
+    %loc
+      https://virtualdeveloperjobs.com/developers/
+    %lastmod
+      = File.mtime('app/views/developers/index.html.haml').to_date.to_s
+    %changefreq
+      weekly
+    %priority
+      0.5
+
+  %url
+    %loc
+      https://virtualdeveloperjobs.com/jobs/new/
+    %lastmod
+      = File.mtime('app/views/jobs/new.html.haml').to_date.to_s
+    %changefreq
+      monthly
+    %priority
+      0.4
+
+
   - for job in @jobs
     %url
       %loc #{job_url(job,:protocol => 'https')}/
