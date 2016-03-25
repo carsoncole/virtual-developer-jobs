@@ -21,7 +21,7 @@
       %p
         = link_to @job.company_url
         %br
-        - if @job.employer_careers_url
+        - unless @job.employer_careers_url.blank?
           Careers site:
           = link_to @job.employer_careers_url
 
@@ -39,7 +39,7 @@
       %br
 
       %h4.h4 JOB DETAILS
-      - if @job.job_url
+      - unless @job.job_url.blank?
         %p
           Job URL:
           = link_to @job.job_url
