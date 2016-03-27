@@ -8,8 +8,8 @@ class Job < ActiveRecord::Base
   after_save :send_your_job_has_been_posted_notification!, if: Proc.new {|job| job.published_at_changed? && job.published_at > Time.now - 20.minutes}
   after_save :send_new_job_posted_notification!, if: Proc.new {|job| job.published_at_changed? && job.published_at > Time.now - 20.minutes}
   validates :company_name, :title, :company_email, :description, :how_to_apply, presence: true
-  validates :company_name, length: { maximum: 45 }
-  validates :title, length: { maximum: 60 }
+  validates :company_name, length: { maximum: 40 }
+  validates :title, length: { maximum: 50 }
 
   #after_save :tweet, if: Proc.new { |j| j.published_at_changed? && j.published_at != nil }
 
@@ -23,15 +23,15 @@ class Job < ActiveRecord::Base
       config.access_token_secret = "Ust0wlg0TvWS1T1hXnPgJbyOaf7QuV45oLAtRGuUkgD6b"
     end
 
-    title = "Job: #{self.title}"
-    company = " @ #{self.company_name}"
-    skills = " Skills: "
+    title = "JOB: #{self.title}"
+    company = " @ #{self.company_name.gsub(".com","").gsub(".org","").gsub(".net","")}" # remove any .com/.org/.net so it does not become a link
+    skills = " Skills => "
     link = " https://virtualdeveloperjobs.com/#{self.slug||self.id}"
 
     message = title + company
 
     self.skill_list.each do |skill|
-      if (message + skills + skill + ', ').size < 111
+      if (message + skills + skill + ', ').size < 116
         if skill == self.skill_list.first
           skills += skill
         else
@@ -60,7 +60,7 @@ class Job < ActiveRecord::Base
       rescue
         puts '***FAIL on job:' + job.id.to_s
       end
-      time = 100 + (Random.rand(20).minutes) 
+      time = 100 + (Random.rand(60).minutes) 
       puts "----WAITING Time: " + time.to_s
       sleep time
     end
