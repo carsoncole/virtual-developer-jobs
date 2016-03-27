@@ -4,9 +4,6 @@ class Job < ActiveRecord::Base
   extend FriendlyId
   friendly_id :title, use: :slugged
 
-
-
-
   has_one :payment
   after_save :send_your_job_has_been_posted_notification!, if: Proc.new {|job| job.published_at_changed? && job.published_at > Time.now - 20.minutes}
   after_save :send_new_job_posted_notification!, if: Proc.new {|job| job.published_at_changed? && job.published_at > Time.now - 20.minutes}
@@ -24,7 +21,7 @@ class Job < ActiveRecord::Base
       config.access_token_secret = "Ust0wlg0TvWS1T1hXnPgJbyOaf7QuV45oLAtRGuUkgD6b"
     end
 
-    client.update("New job: #{self.title}. Skills sought: #{self.skill_list.join(',')}. See https://virtualdeveloperjobs.com/#{self.slug}")
+    client.update("New job: #{self.title}. Skills sought: #{self.skill_list.join(', ')}. @ #{self.company_name} See https://virtualdeveloperjobs.com/#{self.slug}")
   end
 
   private
