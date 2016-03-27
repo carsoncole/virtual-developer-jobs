@@ -24,7 +24,7 @@ class Job < ActiveRecord::Base
     end
 
     title = "JOB: #{self.title}"
-    company = " @ #{self.company_name.gsub(".com","").gsub(".org","").gsub(".net","")}" # remove any .com/.org/.net so it does not become a link
+    company = " @ #{self.company_name.gsub(".com","").gsub(".co", "").gsub(".org","").gsub(".net","")}" # remove any .com/.org/.net so it does not become a link
     skills = " Skills => "
     link = " https://virtualdeveloperjobs.com/#{self.slug||self.id}"
 
