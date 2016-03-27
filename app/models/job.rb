@@ -52,6 +52,7 @@ class Job < ActiveRecord::Base
   end
 
   def tweet_left
+    jos = Job.where(tweeted_at: nil) 
     jos.each do |job|
       puts "Tweeting Job: " + job.id.to_s + ' - ' + job.title
       begin
