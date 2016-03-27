@@ -21,7 +21,28 @@ class Job < ActiveRecord::Base
       config.access_token_secret = "Ust0wlg0TvWS1T1hXnPgJbyOaf7QuV45oLAtRGuUkgD6b"
     end
 
-    client.update("New job: #{self.title}. Skills sought: #{self.skill_list.join(', ')}. @ #{self.company_name} See https://virtualdeveloperjobs.com/#{self.slug}")
+    title = "New job: #{self.title}"
+    company = "at #{self.company_name}"
+    skills = " Skills sought: "
+    link = "See https://virtualdeveloperjobs.com/#{self.slug}"
+
+    message = title + company
+ 
+    self.skill_list.each do |skill|
+      if (skills + skill + ', ') < 116
+        if skill == self.skill_list.first
+          skills += skill
+        else
+          skills += ', ' + skill
+        end
+      else
+        break
+      end
+    end
+
+    message += skills
+
+    client.update(message)
   end
 
   private
