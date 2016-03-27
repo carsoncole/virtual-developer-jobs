@@ -23,9 +23,9 @@ class Job < ActiveRecord::Base
       config.access_token_secret = "Ust0wlg0TvWS1T1hXnPgJbyOaf7QuV45oLAtRGuUkgD6b"
     end
 
-    title = "JOB: #{self.title}"
+    title = "Remote Job: #{self.title}"
     company = " @ #{self.company_name.gsub(".com","").gsub(".co", "").gsub(".org","").gsub(".net","")}" # remove any .com/.org/.net so it does not become a link
-    skills = " Skills => "
+    skills = " Skills: "
     link = " https://virtualdeveloperjobs.com/jobs/#{self.slug||self.id}"
 
     message = title + company
