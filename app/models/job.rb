@@ -24,7 +24,7 @@ class Job < ActiveRecord::Base
       config.access_token_secret = "Ust0wlg0TvWS1T1hXnPgJbyOaf7QuV45oLAtRGuUkgD6b"
     end
 
-    client.update("New job: #{self.title}. Skills sought: #{self.skill_list.join(',')}. See https://virtualdeveloperjobs.com/#{job.slug}")
+    client.update("New job: #{self.title}. Skills sought: #{self.skill_list.join(',')}. See https://virtualdeveloperjobs.com/#{self.slug}")
   end
 
   private
