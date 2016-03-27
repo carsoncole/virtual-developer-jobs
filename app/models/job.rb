@@ -22,12 +22,12 @@ class Job < ActiveRecord::Base
     end
 
     title = "New job: #{self.title}"
-    company = "at #{self.company_name}"
+    company = " at #{self.company_name}"
     skills = " Skills sought: "
     link = "See https://virtualdeveloperjobs.com/#{self.slug}"
 
     message = title + company
- 
+
     self.skill_list.each do |skill|
       if (skills + skill + ', ').size < 116
         if skill == self.skill_list.first
@@ -40,7 +40,7 @@ class Job < ActiveRecord::Base
       end
     end
 
-    message += skills
+    message += skills unless skills.blank?
 
     t = client.update(message)
 
