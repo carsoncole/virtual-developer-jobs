@@ -26,7 +26,7 @@ class Job < ActiveRecord::Base
     title = "New job: #{self.title}"
     company = " at #{self.company_name}"
     skills = " Skills sought: "
-    link = " See https://virtualdeveloperjobs.com/#{self.slug}"
+    link = " https://virtualdeveloperjobs.com/#{self.slug}"
 
     message = title + company
 
