@@ -14,6 +14,8 @@ class Job < ActiveRecord::Base
   after_save :tweet, if: Proc.new {|j| j.published_at_changed? && j.published_at != nil}
 
   def tweet
+    return if self.tweeted_at # don't allow retweets
+
     client = Twitter::REST::Client.new do |config|
       config.consumer_key        = "9toVcVi3psNtey25Q5AhVa1xc"
       config.consumer_secret     = "pk1yqr92lKDkKkzGkybTGL8xRGm9sFxZAV9hk2ypdfwZ5g9vaT"
