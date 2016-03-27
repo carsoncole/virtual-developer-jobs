@@ -42,9 +42,9 @@ class Job < ActiveRecord::Base
 
     message += skills
 
-    client.update(message)
+    t = client.update(message)
 
-    self.update(tweeted: true, tweeted_at: Time.now)
+    self.update(tweeted_at: Time.now)
   end
 
   private
