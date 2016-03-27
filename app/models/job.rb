@@ -51,7 +51,7 @@ class Job < ActiveRecord::Base
     self.update(tweeted_at: Time.now, tweet_id: t.id)
   end
 
-  def tweet_left
+  def self.tweet_left
     jos = Job.where(tweeted_at: nil) 
     jos.each do |job|
       puts "Tweeting Job: " + job.id.to_s + ' - ' + job.title
