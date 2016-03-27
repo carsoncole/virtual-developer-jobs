@@ -29,7 +29,7 @@ class Job < ActiveRecord::Base
     message = title + company
  
     self.skill_list.each do |skill|
-      if (skills + skill + ', ') < 116
+      if (skills + skill + ', ').size < 116
         if skill == self.skill_list.first
           skills += skill
         else
