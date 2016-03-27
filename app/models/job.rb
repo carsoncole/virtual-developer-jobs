@@ -11,7 +11,7 @@ class Job < ActiveRecord::Base
   validates :company_name, length: { maximum: 45 }
   validates :title, length: { maximum: 60 }
 
-  after_save :tweet, if: Proc.new {|j| j.published_at_changed? && j.published_at != nil}
+  #after_save :tweet, if: Proc.new { |j| j.published_at_changed? && j.published_at != nil }
 
   def tweet
     return if self.tweeted_at # don't allow retweets
@@ -48,7 +48,7 @@ class Job < ActiveRecord::Base
 
     t = client.update(message)
 
-    self.update(tweeted_at: Time.now)
+    self.update(tweeted_at: Time.now, tweet_id: t.id)
   end
 
   private
