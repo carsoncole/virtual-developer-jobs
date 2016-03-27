@@ -4,12 +4,7 @@ class Job < ActiveRecord::Base
   extend FriendlyId
   friendly_id :title, use: :slugged
 
-  client = Twitter::REST::Client.new do |config|
-    config.consumer_key        = "9toVcVi3psNtey25Q5AhVa1xc"
-    config.consumer_secret     = "pk1yqr92lKDkKkzGkybTGL8xRGm9sFxZAV9hk2ypdfwZ5g9vaT"
-    config.access_token        = "706899029683077120-q6h49QJFolnJt264c9gdIqTADl8dId6"
-    config.access_token_secret = "Ust0wlg0TvWS1T1hXnPgJbyOaf7QuV45oLAtRGuUkgD6b"
-  end
+
 
 
   has_one :payment
@@ -22,6 +17,13 @@ class Job < ActiveRecord::Base
   after_save :tweet, if: Proc.new {|j| j.published_at_changed? && j.published_at != nil}
 
   def tweet
+    client = Twitter::REST::Client.new do |config|
+      config.consumer_key        = "9toVcVi3psNtey25Q5AhVa1xc"
+      config.consumer_secret     = "pk1yqr92lKDkKkzGkybTGL8xRGm9sFxZAV9hk2ypdfwZ5g9vaT"
+      config.access_token        = "706899029683077120-q6h49QJFolnJt264c9gdIqTADl8dId6"
+      config.access_token_secret = "Ust0wlg0TvWS1T1hXnPgJbyOaf7QuV45oLAtRGuUkgD6b"
+    end
+
     client.update("New job: #{self.title}. Skills sought: #{self.skill_list.join(',')}. See https://virtualdeveloperjobs.com/#{job.slug}")
   end
 
