@@ -26,7 +26,7 @@ class Job < ActiveRecord::Base
     title = "New job: #{self.title}"
     company = " at #{self.company_name}"
     skills = " Skills sought: "
-    link = " https://virtualdeveloperjobs.com/#{self.slug}"
+    link = " https://virtualdeveloperjobs.com/#{self.slug||self.id}"
 
     message = title + company
 
@@ -50,6 +50,21 @@ class Job < ActiveRecord::Base
 
     self.update(tweeted_at: Time.now, tweet_id: t.id)
   end
+
+  def tweet_left
+    jos.each do |job|
+      puts "Tweeting Job: " + job.id.to_s + ' - ' + job.title
+      begin
+        job.tweet
+      rescue
+        puts '***FAIL on job:' + job.id.to_s
+      end
+      time = 100 + (Random.rand(20).minutes) 
+      puts "----WAITING Time: " + time.to_s
+      sleep time
+    end
+  end
+
 
   private
 
