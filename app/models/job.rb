@@ -26,7 +26,7 @@ class Job < ActiveRecord::Base
     title = "New job: #{self.title}"
     company = " at #{self.company_name}"
     skills = " Skills sought: "
-    link = "See https://virtualdeveloperjobs.com/#{self.slug}"
+    link = " See https://virtualdeveloperjobs.com/#{self.slug}"
 
     message = title + company
 
@@ -43,6 +43,8 @@ class Job < ActiveRecord::Base
     end
 
     message += skills unless skills.blank?
+
+    message += link
 
     t = client.update(message)
 
