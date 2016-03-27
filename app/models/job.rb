@@ -48,7 +48,7 @@ class Job < ActiveRecord::Base
 
     t = client.update(message)
 
-    self.update(tweeted_at: Time.now, tweet_id: t.id)
+    self.update(tweeted_at: Time.now, tweet_id: t.id.to_s)
   end
 
   def self.tweet_left
