@@ -23,15 +23,15 @@ class Job < ActiveRecord::Base
       config.access_token_secret = "Ust0wlg0TvWS1T1hXnPgJbyOaf7QuV45oLAtRGuUkgD6b"
     end
 
-    title = "New job: #{self.title}"
-    company = " at #{self.company_name}"
-    skills = " Skills sought: "
+    title = "Job: #{self.title}"
+    company = " @ #{self.company_name}"
+    skills = " Skills: "
     link = " https://virtualdeveloperjobs.com/#{self.slug||self.id}"
 
     message = title + company
 
     self.skill_list.each do |skill|
-      if (message + skills + skill + ', ').size < 111
+      if (message + skills + skill + ', ').size < 113
         if skill == self.skill_list.first
           skills += skill
         else
