@@ -31,9 +31,26 @@
               /   = job.description
 
               .card-text.skill-tags
+                - rails_tag = false
                 - if job.skill_list.any?
                   - job.skill_list[0..7].each do |tag|
-                    .label.label-default= tag
+                    - if (tag == 'Ruby on Rails' || tag == 'Rails') && rails_tag == false
+                      %span= image_tag "122px-Ruby_on_Rails.png", height: '35'
+                      - rails_tag = true
+                    - elsif tag == 'Ruby' 
+                      %span= image_tag "ruby-icon.png", height: '35'
+                    - elsif tag == 'Ember.js' || tag == 'Ember'
+                      %span= image_tag "ember-icon.png", height: '35'
+                    - elsif tag == 'Javascript'
+                      %span= image_tag "javascript-icon.png", height: '35'
+                    - elsif tag == 'MySql'
+                      %span= image_tag "mysql-icon.png", height: '35'
+                    - elsif tag == 'Angular'
+                      %span= image_tag "angular-icon.png", height: '35'
+                    - elsif tag == 'Ruby on Rails' || tag == 'Rails'
+                      - nil
+                    - else
+                      .label.label-default= tag
                   - if job.skill_list.size > 8
                     = '...'
 
