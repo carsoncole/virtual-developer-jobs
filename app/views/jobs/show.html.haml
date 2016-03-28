@@ -2,10 +2,7 @@
   .row
     .col-md-8
       %br
-      - unless @preview
-        
-        %p= link_to "<< Back to all Jobs", root_path
-        
+
 
 
       - if @preview
@@ -77,6 +74,11 @@
         = link_to 'Next Step: Payment', new_payment_path(job_id: @job.id)
         \&nbsp|&nbsp
         = link_to 'Edit', edit_job_path(@job)
+
+
+      - unless @preview
+        
+        %p= link_to "<< Back to all Jobs", root_path
 
 
       %br
