@@ -27,8 +27,8 @@
                 Posted:
                 = job.published_at.strftime('%b-%e')
 
-              .job-description
-                = job.description
+              / .job-description
+              /   = job.description
 
               .card-text.skill-tags
                 - if job.skill_list.any?
