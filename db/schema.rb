@@ -11,21 +11,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160322172735) do
+ActiveRecord::Schema.define(version: 20160327154514) do
 
   create_table "jobs", force: :cascade do |t|
-    t.string   "company_name",  null: false
+    t.string   "company_name",         null: false
     t.string   "company_url"
     t.string   "company_email"
-    t.string   "title",         null: false
+    t.string   "title",                null: false
+    t.text     "url"
+    t.string   "email"
     t.text     "description"
     t.text     "how_to_apply"
     t.integer  "payment_id"
     t.datetime "published_at"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
     t.boolean  "is_full_time"
     t.string   "slug"
+    t.string   "employer_careers_url"
+    t.string   "job_url"
+    t.datetime "tweeted_at"
+    t.string   "tweet_id"
   end
 
   add_index "jobs", ["slug"], name: "index_jobs_on_slug", unique: true

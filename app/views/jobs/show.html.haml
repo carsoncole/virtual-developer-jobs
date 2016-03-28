@@ -1,6 +1,6 @@
 .container
   .row
-    .col-md-10
+    .col-md-8
       %br
       - unless @preview
         
@@ -80,3 +80,10 @@
 
 
       %br
+    .col-md-4
+      .h5 Related Jobs
+
+      %table.table.table-condensed
+        - @jobs.each do |job|
+          %tr
+            %td= link_to job.title, job_path(job)
