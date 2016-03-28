@@ -26,7 +26,7 @@ body {
 }
 
 
-h2, h3, h4  {
+h2, h3, h4, h5  {
   font-weight: 300 !important;
 }
 
@@ -44,6 +44,10 @@ h3 {
 
 h4 {
   font-size: 1.1em;
+}
+
+h5 {
+  font-size: 1em;
 }
 
 .label {
@@ -99,6 +103,12 @@ h4 {
   display: inline;
   font-weight: 900;
   letter-spacing: 0.01625em;
+}
+
+.job {
+  h2 {
+    font-size: 1.7em;
+  }
 }
 
 .job-company {

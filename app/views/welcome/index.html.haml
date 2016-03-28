@@ -19,7 +19,7 @@
         - for job in @jobs
           .card.job
             .card-block
-              %h4.card-title= link_to job.company_name.truncate(40), job.company_url
+              %h5.card-title= link_to job.company_name.truncate(40), job.company_url
 
               %h2.card-subtitle= link_to job.title.truncate(40), job_path(job)
               / %h4.h4.card-title= link_to job.title.truncate(40), job
@@ -49,7 +49,7 @@
                       %span= image_tag "nodejs-icon.png", height: '30'
                     - elsif tag == 'MySql'
                       %span= image_tag "mysql-icon.png", height: '30'
-                    - elsif tag == 'Angular'
+                    - elsif tag == 'Angular' || tag == 'Angular.js'
                       %span= image_tag "angular-icon.png", height: '30'
                     - elsif tag == 'Ruby on Rails' || tag == 'Rails'
                       - nil
