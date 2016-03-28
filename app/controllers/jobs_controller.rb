@@ -8,6 +8,9 @@ class JobsController < ApplicationController
   def show
     @preview = true if params[:preview]
     @meta_keywords = @job.skill_list.to_s
+
+    @jobs = Job.tagged_with(@job.skill_list, :any => true)
+
   end
 
   # GET /jobs/new
