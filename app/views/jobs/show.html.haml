@@ -32,9 +32,9 @@
           Job posted
           = @job.published_at.strftime("%b %e")
 
-      %br
+      / %br
 
-      .job-description= Redcarpet::Markdown.new(Redcarpet::Render::HTML, extensions: {}).render(@job.description).html_safe
+      / .job-description= Redcarpet::Markdown.new(Redcarpet::Render::HTML, extensions: {}).render(@job.description).html_safe
 
       %br
 
