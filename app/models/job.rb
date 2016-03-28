@@ -51,7 +51,7 @@ class Job < ActiveRecord::Base
     self.update(tweeted_at: Time.now, tweet_id: t.id.to_s)
   end
 
-  def self.tweet_left
+  def self.tweet_left(delay_time)
     jos = Job.where(tweeted_at: nil) 
     jos.each do |job|
       puts "Tweeting Job: " + job.id.to_s + ' - ' + job.title
@@ -60,7 +60,7 @@ class Job < ActiveRecord::Base
       rescue
         puts '***FAIL on job:' + job.id.to_s
       end
-      time = 100 + (Random.rand(60).minutes) 
+      time = 100 + (Random.rand(delay_time).minutes) 
       puts "----WAITING Time: " + time.to_s
       sleep time
     end
