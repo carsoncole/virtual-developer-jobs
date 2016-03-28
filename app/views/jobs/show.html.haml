@@ -14,7 +14,7 @@
 
         %hr
 
-      %h2.h2= @job.title
+      %h1.h1= @job.title
 
       %h4.h4= @job.company_name
       
@@ -83,7 +83,7 @@
     .col-md-4
       .h5 Related Jobs
 
-      %table.table.table-condensed
+      %table.table.table-sm
         - @jobs.each do |job|
           %tr
             %td= link_to job.title, job_path(job)
