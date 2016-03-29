@@ -12,7 +12,7 @@
                     %li= msg
 
           
-          %h3 The Job
+          %h2 The Job
 
           .row
             .col-md-6
@@ -50,7 +50,7 @@
 
           %hr
 
-          %h3 Organization
+          %h2 Organization
 
           .row
             .col-md-6
@@ -64,14 +64,19 @@
 
               %br
 
+              = f.label :employer_twitter_account
+              = f.text_field :employer_twitter_account, class: 'form-control' 
+
+              %br
+
               = f.label :email
               %p.text-muted Reciept and all communications sent here
-              = f.text_field :company_email, class: 'form-control'   
+              = f.email_field :company_email, class: 'form-control'   
 
 
           %hr
 
-          %h3 Job Details
+          %h2 Job Details
 
           .row
             .col-md-6
@@ -84,7 +89,7 @@
 
           %hr
 
-          %h3 How to Apply
+          %h2 How to Apply
 
           .row
             .col-md-10

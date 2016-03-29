@@ -23,12 +23,28 @@ class Job < ActiveRecord::Base
       config.access_token_secret = AUTHENTICATION["TWITTER_ACCESS_TOKEN_SECRET"]
     end
 
+    # Compose Twitter Message
     title = "Remote Job: #{self.title}"
-    company = " @ #{self.company_name.gsub(".com","").gsub(".co", "").gsub(".org","").gsub(".net","")}" # remove any .com/.org/.net so it does not become a link
+    
+    if self.employer_twitter_account.blank?
+      company = " @ #{self.company_name.gsub(".com","").gsub(".co", "").gsub(".org","").gsub(".net","")}" # remove any .com/.org/.net so it does not become a link
+    else
+      company = self.employer_twitter_account
+    end
+
     skills = " Skills: "
     link = " https://virtualdeveloperjobs.com/jobs/#{self.slug||self.id}"
 
     message = title + company
+
+    hashtags = []
+    if self.skill_list.include? "Ruby on Rails"
+      hashtags << " #RubyOnRails"
+    end
+    if hashtags.any?
+      message += hashtags.to_s 
+      message += ' '
+    end
 
     self.skill_list.each do |skill|
       if (message + skills + skill + ', ').size < 116
@@ -44,12 +60,17 @@ class Job < ActiveRecord::Base
 
     message += skills unless skills.blank?
 
+    # Add addition hashtags if space permitting
+    if message.size < 105
+      message += " #remotejob"
+    end
+    
     message += link
 
+
+    # Tweet!
     t = client.update(message)
-
     self.update(tweeted_at: Time.now, tweet_id: t.id.to_s)
-
     return t
   end
 

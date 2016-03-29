@@ -35,34 +35,16 @@
 
       %br
 
-      %h4.h4 JOB DETAILS
-      - unless @job.job_url.blank?
-        %p
-          Job URL:
-          = link_to @job.job_url
 
-      .label.label-info
-        Remote
-      &nbsp;
-      .label.label-info
-        = @job.is_full_time ? 'Full Time' : 'Part Time'
       
 
-      %br
-      %br
-      %h4.h4 SKILL TAGS
-      - if @job.skill_list.any?
-        - @job.skill_list.each do |tag|
-          .label.label-default=tag
-        %br
-        %br
 
       - unless @job.how_to_apply.blank?
 
         .alert.alert-info
           %h3.h3.no-top-margin APPLY
 
-          = @job.how_to_apply.html_safe
+          = Redcarpet::Markdown.new(Redcarpet::Render::HTML, extensions: {}).render(@job.how_to_apply).html_safe
 
 
 
@@ -83,7 +65,32 @@
 
       %br
     .col-md-4
-      .h5 Related Jobs
+      %h4.h4 JOB DETAILS
+      - unless @job.job_url.blank?
+        %p
+          Job URL:
+          = link_to @job.job_url
+
+      .label.label-info
+        Remote
+      &nbsp;
+      .label.label-info
+        = @job.is_full_time ? 'Full Time' : 'Part Time'
+
+      %br
+      %br
+
+      %h4.h4 SKILL TAGS
+      - if @job.skill_list.any?
+        - @job.skill_list.each do |tag|
+          .label.label-default=tag
+        %br
+        %br
+
+      %br
+      %br
+
+      %h5.h5 Related Jobs
 
       %table.table.table-sm
         - @jobs.each do |job|
