@@ -17,10 +17,10 @@ class Job < ActiveRecord::Base
     return if self.tweeted_at # don't allow retweets
 
     client = Twitter::REST::Client.new do |config|
-      config.consumer_key        = "9toVcVi3psNtey25Q5AhVa1xc"
-      config.consumer_secret     = "pk1yqr92lKDkKkzGkybTGL8xRGm9sFxZAV9hk2ypdfwZ5g9vaT"
-      config.access_token        = "706899029683077120-q6h49QJFolnJt264c9gdIqTADl8dId6"
-      config.access_token_secret = "Ust0wlg0TvWS1T1hXnPgJbyOaf7QuV45oLAtRGuUkgD6b"
+      config.consumer_key        = AUTHENTICATION["TWITTER_CONSUMER_KEY"]
+      config.consumer_secret     = AUTHENTICATION["TWITTER_CONSUMER_SECRET"]
+      config.access_token        = AUTHENTICATION["TWITTER_ACCESS_TOKEN"]
+      config.access_token_secret = AUTHENTICATION["TWITTER_ACCESS_TOKEN_SECRET"]
     end
 
     title = "Remote Job: #{self.title}"

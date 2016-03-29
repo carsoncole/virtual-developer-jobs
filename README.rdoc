@@ -31,3 +31,13 @@ Application notifications sends through gmail.
 
 == Environment Variables
 Environment variables are loaded from config/passwords.yml which is not stored in Git. The example file passwords.example.yml shows which variables are required.
+
+Requirement variables (need for each environment):
+
+```ruby
+development:
+  HTTP_USER: john
+  HTTP_PASSWORD: doe
+  GMAIL_USERNAME: johndoe@gmail.com
+  GMAIL_PASSWORD: password
+```
