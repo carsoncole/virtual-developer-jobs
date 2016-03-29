@@ -1,7 +1,7 @@
 = Virtual Developer Jobs
 Carson Cole
 
-This application is an online job site for contract developers working virtually/remotely.
+This application is an online job site for contract developers working virtually/remotely, but can be modified for any type of job site.
 
 == Requirements
 
@@ -9,7 +9,7 @@ This application is an online job site for contract developers working virtually
 Ruby version > 1.9 is required due to using Rails 4.2.5.
 
 === Database
-Uses Sqlite3.
+Configured by default to use Sqlite3, but can be changed in database.yml to use any database.
 
 
 == Installation
@@ -20,10 +20,7 @@ Uses Sqlite3.
 
 == Authentication
 
-The application has basic authentication.
-
-- User: AUTHENTICATION["HTTP_USER"]
-- Password: AUTHENTICATION["HTTP_PASSWORD"]
+The application uses basic HTTP authentication.
 
 == Notifications
 
@@ -33,10 +30,4 @@ Application notifications sends through gmail.
 - Password: ENV["GMAIL_PASSWORD"]
 
 == Environment Variables
-Environment variables are loaded from config/environment_variables.yml which is not stored in Git.
-
-Required variables:
-GMAIL_USERNAME
-GMAIL_PASSWORD
-HTTP_USER
-HTTP_PASSWORD
+Environment variables are loaded from config/passwords.yml which is not stored in Git. The example file passwords.example.yml shows which variables are required.
