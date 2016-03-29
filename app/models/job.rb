@@ -29,7 +29,7 @@ class Job < ActiveRecord::Base
     if self.employer_twitter_account.blank?
       company = " @ #{self.company_name.gsub(".com","").gsub(".co", "").gsub(".org","").gsub(".net","")}" # remove any .com/.org/.net so it does not become a link
     else
-      company = self.employer_twitter_account
+      company = ' ' + self.employer_twitter_account
     end
 
     skills = " Skills: "
@@ -64,7 +64,7 @@ class Job < ActiveRecord::Base
     if message.size < 105
       message += " #remotejob"
     end
-    
+
     message += link
 
 
