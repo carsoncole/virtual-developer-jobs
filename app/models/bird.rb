@@ -2,7 +2,7 @@ class Bird
 
   def ruby_on_rails
     set_twitter_connection
-    jobs = Job.tagged_with("Ruby on Rails").by_published_at.where("published_at > ?", Date.today - 30.days)
+    jobs = Job.tagged_with("Ruby on Rails").where("published_at > ?", Date.today - 30.days)
     message = "Our #{jobs.size} current remote Ruby on Rails jobs https://virtualdeveloperjobs.com/?tag=Ruby%20on%20Rails #RoR #RemoteJob"
     tweet = client.update(message)
   end
