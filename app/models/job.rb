@@ -42,7 +42,7 @@ class Job < ActiveRecord::Base
       hashtags << " #RubyOnRails"
     end
     if hashtags.any?
-      message += hashtags.to_s 
+      message += hashtags.join(", ")
       message += ' '
     end
 
