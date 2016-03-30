@@ -12,8 +12,8 @@
   %meta{ name: :keywords, content: @meta_keywords }
 %meta{ name: :Description, content: @meta || "Virtual Developer Jobs is a job site focused on virtual/remote job opportunities for engineers and developers globally."}
 %link{ rel: "canonical", href: "#{canonical}"}
-= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
-= javascript_include_tag 'application', 'data-turbolinks-track' => true
+= stylesheet_link_tag    'application', media: 'all'
+= javascript_include_tag 'application'
 = csrf_meta_tags
 = render 'twitter'
 = render "google_analytics"
