@@ -8,8 +8,8 @@ class Job < ActiveRecord::Base
   after_save :send_your_job_has_been_posted_notification!, if: Proc.new {|job| job.published_at_changed? && job.published_at > Time.now - 20.minutes}
   after_save :send_new_job_posted_notification!, if: Proc.new {|job| job.published_at_changed? && job.published_at > Time.now - 20.minutes}
   validates :company_name, :title, :company_email, :description, :how_to_apply, presence: true
-  validates :company_name, length: { maximum: 100 }
-  validates :title, length: { maximum: 100 }
+  validates :company_name, length: { maximum: 40 }
+  validates :title, length: { maximum: 50 }
 
   after_save :tweet, if: Proc.new { |j| j.published_at_changed? && j.published_at != nil && j.tweet_id.nil? }
 
