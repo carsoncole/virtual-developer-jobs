@@ -26,6 +26,9 @@
               %p.card-subtitle
                 = link_to job.company_name, job.company_url, target: '_blank'
                 %span.text-muted= fa_icon("external-link")
+                %span.text-muted
+                  &nbsp; Posted:
+                  = job.published_at.strftime('%b-%e')
               
               .description
                 = Redcarpet::Markdown.new(Redcarpet::Render::HTML, extensions: {}).render(job.description.truncate(500)).html_safe
@@ -59,10 +62,8 @@
                       .label.label-default= tag
                   - if job.skill_list.size > 8
                     = '...'
-              %br
-              %p.card-text.text-muted
-                Posted:
-                = job.published_at.strftime('%b-%e')
+
+
 
 #card-description
   Hello
