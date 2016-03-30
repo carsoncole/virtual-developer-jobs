@@ -16,52 +16,53 @@
     .col-md-12
       .card-columns
         - for job in @jobs
-          .card.job
-            .card-block
-              / .pull-right.text-muted.caret-down= fa_icon("caret-square-o-down")
-              / .pull-right.text-muted.caret-up= fa_icon("caret-square-o-up")
-              
+          %article
+            .card.job
+              .card-block
+                / .pull-right.text-muted.caret-down= fa_icon("caret-square-o-down")
+                / .pull-right.text-muted.caret-up= fa_icon("caret-square-o-up")
+                
+                %header
+                  %h1.card-title= link_to job.title, job_path(job)
+                  %p.card-subtitle
+                    = link_to job.company_name, job.company_url, target: '_blank'
+                    %span.text-muted= fa_icon("external-link")
+                    %span.text-muted
+                      &nbsp; Posted:
+                      = job.published_at.strftime('%b-%e')
+                
+                .description
+                  = Redcarpet::Markdown.new(Redcarpet::Render::HTML, extensions: {}).render(job.description.truncate(500)).html_safe
+                  = link_to "Read more >>", job_path(job)
 
-              %h2.card-title= link_to job.title, job_path(job)
-              %p.card-subtitle
-                = link_to job.company_name, job.company_url, target: '_blank'
-                %span.text-muted= fa_icon("external-link")
-                %span.text-muted
-                  &nbsp; Posted:
-                  = job.published_at.strftime('%b-%e')
-              
-              .description
-                = Redcarpet::Markdown.new(Redcarpet::Render::HTML, extensions: {}).render(job.description.truncate(500)).html_safe
-                = link_to "Read more >>", job_path(job)
-
-              %br
-              .card-text.skill-tags
-                - rails_tag = false
-                - if job.skill_list.any?
-                  - job.skill_list[0..7].each do |tag|
-                    - if (tag == 'Ruby on Rails' || tag == 'Rails') && rails_tag == false
-                      %span= image_tag "122px-Ruby_on_Rails.png", height: '30'
-                      - rails_tag = true
-                    - elsif tag == 'Ruby' 
-                      %span= image_tag "ruby-icon.png", height: '30'
-                    - elsif tag == 'Ember.js' || tag == 'Ember'
-                      %span= image_tag "ember-icon.png", height: '30'
-                    - elsif tag == 'Javascript'
-                      %span= image_tag "javascript.png", height: '30'
-                    - elsif tag == 'MariaDB'
-                      %span= image_tag "mariadb-icon.png", height: '30'
-                    - elsif tag == 'Node.js'
-                      %span= image_tag "nodejs-icon.png", height: '30'
-                    - elsif tag == 'MySql'
-                      %span= image_tag "mysql-icon.png", height: '30'
-                    - elsif tag == 'Angular' || tag == 'Angular.js'
-                      %span= image_tag "angular-icon.png", height: '30'
-                    - elsif tag == 'Ruby on Rails' || tag == 'Rails'
-                      - nil
-                    - else
-                      .label.label-default= tag
-                  - if job.skill_list.size > 8
-                    = '...'
+                %br
+                .card-text.skill-tags
+                  - rails_tag = false
+                  - if job.skill_list.any?
+                    - job.skill_list[0..7].each do |tag|
+                      - if (tag == 'Ruby on Rails' || tag == 'Rails') && rails_tag == false
+                        %span= image_tag "122px-Ruby_on_Rails.png", height: '30'
+                        - rails_tag = true
+                      - elsif tag == 'Ruby' 
+                        %span= image_tag "ruby-icon.png", height: '30'
+                      - elsif tag == 'Ember.js' || tag == 'Ember'
+                        %span= image_tag "ember-icon.png", height: '30'
+                      - elsif tag == 'Javascript'
+                        %span= image_tag "javascript.png", height: '30'
+                      - elsif tag == 'MariaDB'
+                        %span= image_tag "mariadb-icon.png", height: '30'
+                      - elsif tag == 'Node.js'
+                        %span= image_tag "nodejs-icon.png", height: '30'
+                      - elsif tag == 'MySql'
+                        %span= image_tag "mysql-icon.png", height: '30'
+                      - elsif tag == 'Angular' || tag == 'Angular.js'
+                        %span= image_tag "angular-icon.png", height: '30'
+                      - elsif tag == 'Ruby on Rails' || tag == 'Rails'
+                        - nil
+                      - else
+                        .label.label-default= tag
+                    - if job.skill_list.size > 8
+                      = '...'
 
 
 
