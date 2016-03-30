@@ -37,12 +37,19 @@ h2, h3, h4, h5  {
   font-weight: 300 !important;
 }
 
+
+h2.card-title {
+  font-size: 1.55em;
+}
+
+
+
 h1 {
   font-size: 2.4em;
 }
 
 h2 {
-  font-size: 1.8em;
+  font-size: 1.7em;
 }
 
 h3 {
@@ -112,11 +119,6 @@ h5 {
   letter-spacing: 0.01625em;
 }
 
-.job {
-  h2 {
-    font-size: 1.7em;
-  }
-}
 
 .job-company {
   font-size: 1em;
