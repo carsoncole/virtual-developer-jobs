@@ -23,22 +23,15 @@
               
 
               %h2.card-title= link_to job.title, job_path(job)
-              %p.card-subtitle= link_to job.company_name, job.company_url
+              %p.card-subtitle
+                = link_to job.company_name, job.company_url, target: '_blank'
+                %span.text-muted= fa_icon("external-link")
               
               .description
                 = Redcarpet::Markdown.new(Redcarpet::Render::HTML, extensions: {}).render(job.description.truncate(500)).html_safe
                 = link_to "Read more >>", job_path(job)
 
-                %br
-                %br
-
-              %p.card-text.text-muted
-                Posted:
-                = job.published_at.strftime('%b-%e')
-
-              / .job-description
-              /   = job.description
-
+              %br
               .card-text.skill-tags
                 - rails_tag = false
                 - if job.skill_list.any?
@@ -66,7 +59,10 @@
                       .label.label-default= tag
                   - if job.skill_list.size > 8
                     = '...'
-
+              %br
+              %p.card-text.text-muted
+                Posted:
+                = job.published_at.strftime('%b-%e')
 
 #card-description
   Hello
