@@ -4,9 +4,9 @@
     .col-md-12
       %ul.nav.nav-pills
         %li.nav-item= link_to 'All', root_path, class: "nav-link pop #{'active' unless params[:tag]}"
+        %li.nav-item= link_to 'Front-End', root_path(tag: 'front-end-jobs'), class: "nav-link pop #{'active' if params[:tag] == 'front-end-jobs'}"
         - ActsAsTaggableOn::Tag.most_used(8).each do |tag|
           %li.nav-item= link_to tag, root_path(tag: tag.name), class: "nav-link pop #{'active' if params[:tag] == tag.name}"
-
 
   %br
 

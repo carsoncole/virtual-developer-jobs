@@ -9,7 +9,7 @@ class Bird
     end
 
     jobs = Job.tagged_with("Ruby on Rails").where("published_at > ?", Date.today - 30.days)
-    message = "Our #{jobs.size} current remote Ruby on Rails jobs https://virtualdeveloperjobs.com/?tag=Ruby%20on%20Rails #RoR #RemoteJob"
+    message = "Our #{jobs.size} current remote Ruby on Rails jobs https://virtualdeveloperjobs.com/?tag=Ruby%20on%20Rails #RoR #rubyonrails #RemoteJob"
     tweet = client.update(message)
   end
 
