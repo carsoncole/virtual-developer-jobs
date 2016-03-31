@@ -32,6 +32,8 @@
                       = job.published_at.strftime('%b-%e')
                 
                 .description
+                  %br
+                  %br
                   = Redcarpet::Markdown.new(Redcarpet::Render::HTML, extensions: {}).render(job.description).html_safe
 
                   %p
