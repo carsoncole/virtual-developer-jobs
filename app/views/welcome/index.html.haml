@@ -19,11 +19,8 @@
           %article
             .card.job
               .card-block
-                / .pull-right.text-muted.caret-down= fa_icon("caret-square-o-down")
-                / .pull-right.text-muted.caret-up= fa_icon("caret-square-o-up")
-                .pull-right.close-icon= fa_icon "close 2x"
                 %header
-                  %h1.card-title= job.title
+                  %h1.card-title= link_to job.title, job
                   %p.card-subtitle
                     = link_to job.company_name, job.company_url, target: '_blank'
                     %span.text-muted= fa_icon("external-link")
