@@ -9,6 +9,7 @@ class WelcomeController < ApplicationController
     else
       @jobs = Job.where('published_at NOT NULL').order('published_at DESC')
     end
+    @job_banner = @jobs.first
     @meta_title = 'Job Site for Virtual and Remote Jobs'
   end
 end
