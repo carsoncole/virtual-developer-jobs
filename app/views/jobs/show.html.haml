@@ -29,8 +29,9 @@
       - if @job.published_at
         %br
         %p.text-muted
-          Job posted
-          = @job.published_at.strftime("%b %e")
+          Posted:
+          = distance_of_time_in_words(@job.published_at, Time.now)
+          ago
 
       %br
 

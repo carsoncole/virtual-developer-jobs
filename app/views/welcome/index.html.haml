@@ -25,8 +25,9 @@
                     = link_to job.company_name, job.company_url, target: '_blank'
                     %span.text-muted= fa_icon("external-link")
                     %span.text-muted
-                      &nbsp; Posted:
-                      = job.published_at.strftime('%b-%e')
+                      &nbsp; 
+                      = distance_of_time_in_words(job.published_at, Time.now)
+                      ago
                 
                 .description
                   %br
