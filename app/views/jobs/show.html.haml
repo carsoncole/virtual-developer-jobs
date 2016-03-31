@@ -85,11 +85,12 @@
       %br
 
       %h4.h4 SKILL TAGS
-      - if @job.skill_list.any?
-        - @job.skill_list.each do |tag|
-          .label.label-default=tag
-        %br
-        %br
+      %p.tag
+        - if @job.skill_list.any?
+          - @job.skill_list.each do |tag|
+            %span.btn.btn-secondary.btn-tag=tag.upcase
+          %br
+          %br
 
       %br
       %br

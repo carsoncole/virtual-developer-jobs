@@ -48,28 +48,30 @@
                 .card-text.skill-tags
                   - rails_tag = false
                   - if job.skill_list.any?
-                    - job.skill_list[0..7].each do |tag|
-                      - if (tag == 'Ruby on Rails' || tag == 'Rails') && rails_tag == false
-                        %span= image_tag "122px-Ruby_on_Rails.png", height: '30'
-                        - rails_tag = true
-                      - elsif tag == 'Ruby' 
-                        %span= image_tag "ruby-icon.png", height: '30'
-                      - elsif tag == 'Ember.js' || tag == 'Ember'
-                        %span= image_tag "ember-icon.png", height: '30'
-                      - elsif tag == 'Javascript'
-                        %span= image_tag "javascript.png", height: '30'
-                      - elsif tag == 'MariaDB'
-                        %span= image_tag "mariadb-icon.png", height: '30'
-                      - elsif tag == 'Node.js'
-                        %span= image_tag "nodejs-icon.png", height: '30'
-                      - elsif tag == 'MySql'
-                        %span= image_tag "mysql-icon.png", height: '30'
-                      - elsif tag == 'Angular' || tag == 'Angular.js'
-                        %span= image_tag "angular-icon.png", height: '30'
-                      - elsif tag == 'Ruby on Rails' || tag == 'Rails'
-                        - nil
-                      - else
-                        .label.label-default= tag
+                    .tag
+                      - job.skill_list[0..7].each do |tag|
+                        
+                        / - if (tag == 'Ruby on Rails' || tag == 'Rails') && rails_tag == false
+                        /   %span= image_tag "122px-Ruby_on_Rails.png", height: '30'
+                        /   - rails_tag = true
+                        / - elsif tag == 'Ruby' 
+                        /   %span= image_tag "ruby-icon.png", height: '30'
+                        / - elsif tag == 'Ember.js' || tag == 'Ember'
+                        /   %span= image_tag "ember-icon.png", height: '30'
+                        / - elsif tag == 'Javascript'
+                        /   %span= image_tag "javascript.png", height: '30'
+                        / - elsif tag == 'MariaDB'
+                        /   %span= image_tag "mariadb-icon.png", height: '30'
+                        / - elsif tag == 'Node.js'
+                        /   %span= image_tag "nodejs-icon.png", height: '30'
+                        / - elsif tag == 'MySql'
+                        /   %span= image_tag "mysql-icon.png", height: '30'
+                        / - elsif tag == 'Angular' || tag == 'Angular.js'
+                        /   %span= image_tag "angular-icon.png", height: '30'
+                        / - elsif tag == 'Ruby on Rails' || tag == 'Rails'
+                        /   - nil
+                        / - else
+                        %span.btn.btn-secondary.btn-tag= tag
                     - if job.skill_list.size > 8
                       = '...'
 
