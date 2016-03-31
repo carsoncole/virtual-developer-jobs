@@ -21,9 +21,9 @@
               .card-block
                 / .pull-right.text-muted.caret-down= fa_icon("caret-square-o-down")
                 / .pull-right.text-muted.caret-up= fa_icon("caret-square-o-up")
-                
+                .pull-right.close-icon= fa_icon "close"
                 %header
-                  %h1.card-title= link_to job.title, job_path(job)
+                  %h1.card-title= job.title
                   %p.card-subtitle
                     = link_to job.company_name, job.company_url, target: '_blank'
                     %span.text-muted= fa_icon("external-link")
@@ -32,8 +32,16 @@
                       = job.published_at.strftime('%b-%e')
                 
                 .description
-                  = Redcarpet::Markdown.new(Redcarpet::Render::HTML, extensions: {}).render(job.description.truncate(500)).html_safe
-                  = link_to "Read more >>", job_path(job)
+                  = Redcarpet::Markdown.new(Redcarpet::Render::HTML, extensions: {}).render(job.description).html_safe
+
+                  %p
+                    = link_to job.company_url
+                    %br
+                    - unless job.employer_careers_url.blank?
+                      Careers site:
+                      = link_to job.employer_careers_url
+
+
 
                 %br
                 .card-text.skill-tags

@@ -4,6 +4,11 @@
 }
 
 
+body.black {
+  opacity: 0.95;
+  background-color: #333333;
+}
+
 @media (min-width: 1250px) {
     .container{
         max-width: 1230px;
@@ -15,6 +20,21 @@
     display: none;
   }
 }
+
+.close-icon {
+  display: none;
+}
+
+.job.card.fullscreen{
+    z-index: 9999; 
+    width: 95%; 
+    height: 95%; 
+    background-color: #ffffff;
+    position: fixed; 
+    top: 2.5%; 
+    left: 2.5%; 
+    right: 5%
+ }
 
 
 body {
