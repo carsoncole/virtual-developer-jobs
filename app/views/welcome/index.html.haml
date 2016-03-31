@@ -1,120 +1,137 @@
+- tags = params[:tags].split("_") if params[:tags]
 .container
   .row
     .col-md-12
       %ul.nav.nav-pills
         %li.nav-item= link_to 'All', root_path, class: "nav-link pop #{'active' unless params[:tag]}"
-        %li.nav-item= link_to 'Front-End', root_path(tag: 'front-end-jobs'), class: "nav-link pop #{'active' if params[:tag] == 'front-end-jobs'}"
-        - ActsAsTaggableOn::Tag.most_used(8).each do |tag|
-          %li.nav-item= link_to tag, root_path(tag: tag.name), class: "nav-link pop #{'active' if params[:tag] == tag.name}"
+        / %li.nav-item= link_to 'Front-End', root_path(tag: 'front-end-jobs'), class: "nav-link pop #{'active' if params[:tag] == 'front-end-jobs'}"
+        - all_tags = ActsAsTaggableOn::Tag.most_used(10).map {|t| t.name }
+        - puts all_tags
+        - puts tags
+        - if tags
+          - tags.each do |t|
+            - all_tags << t unless all_tags.include? t
+        - all_tags.each do |tag|
+          %li.nav-item
+            - if tags && tags.include?(tag)
+              - if tags.size == 1
+                = link_to tag, root_path, class: "nav-link pop active"
+              - else
+                = link_to tag, root_path(tags: params[:tags].gsub("_#{tag}","")), class: "nav-link pop active"
+            - elsif tags
+              = link_to tag, root_path(tags: params[:tags] + '_' + tag), class: "nav-link pop"
+            - else
+              = link_to tag, root_path(tags: tag), class: "nav-link pop"
+  - if @jobs.empty?
+    %br
+    %br
+    %h5
+      No jobs. Relax your search items above.
+  - if @job_banner
+    %br
+    .row
+      .col-md-12
+        %article
+          .card.job.card-banner
+            .card-block
+              .row
+                .col-md-8
+                  %h1.card-title= link_to @job_banner.title, @job_banner
 
-
-  %br
-  .row
-    .col-md-12
-      %article
-        .card.job.card-banner
-          .card-block
-            .row
-              .col-md-8
-                %h1.card-title= link_to @job_banner.title, @job_banner
-
-                %p.card-subtitle
-                  = link_to @job_banner.company_name, @job_banner.company_url, target: '_blank'
-                  %span.text-muted= fa_icon("external-link")
-                  %span.text-muted
-                    &nbsp; 
-                    = distance_of_time_in_words(@job_banner.published_at, Time.now)
-                    ago
-                %br
-                = Redcarpet::Markdown.new(Redcarpet::Render::HTML, extensions: {}).render(@job_banner.description).truncate(500).html_safe
-                %br
-                %p
-                  %strong
-                    = fa_icon("long-arrow-right")
-                    = link_to " Read More", job_path(@job_banner)
-              .col-md-4
-                - unless @job_banner.employer_careers_url.blank?  
-                  %p
-                    = link_to "Careers site", @job_banner.employer_careers_url, target: '_blank'
+                  %p.card-subtitle
+                    = link_to @job_banner.company_name, @job_banner.company_url, target: '_blank'
                     %span.text-muted= fa_icon("external-link")
+                    %span.text-muted
+                      &nbsp; 
+                      = distance_of_time_in_words(@job_banner.published_at, Time.now)
+                      ago
+                  %br
+                  = Redcarpet::Markdown.new(Redcarpet::Render::HTML, extensions: {}).render(@job_banner.description).truncate(500).html_safe
+                  %br
+                  %p
+                    %strong
+                      = fa_icon("long-arrow-right")
+                      = link_to " Read More", job_path(@job_banner)
+                .col-md-4
+                  - unless @job_banner.employer_careers_url.blank?  
+                    %p
+                      = link_to "Careers site", @job_banner.employer_careers_url, target: '_blank'
+                      %span.text-muted= fa_icon("external-link")
 
 
-                %br
-                .card-text.skill-tags
-                  - rails_tag = false
-                  - if @job_banner.skill_list.any?
-                    .tag
-                      - @job_banner.skill_list[0..7].each do |tag|
-                        %span.btn.btn-secondary.btn-tag= tag
-                    - if @job_banner.skill_list.size > 8
-                      = '...'
+                  %br
+                  .card-text.skill-tags
+                    - rails_tag = false
+                    - if @job_banner.skill_list.any?
+                      .tag
+                        - @job_banner.skill_list[0..7].each do |tag|
+                          %span.btn.btn-secondary.btn-tag= tag
+                      - if @job_banner.skill_list.size > 8
+                        = '...'
 
 
 
   .row
     .col-md-12
       .card-columns
-
-        - for job in @jobs[1..-1]
-          %article
-            .card.job
-              .card-block
-                %header
-                  %h1.card-title= link_to job.title, job
-                  %p.card-subtitle
-                    = link_to job.company_name, job.company_url, target: '_blank'
-                    %span.text-muted= fa_icon("external-link")
-                    %span.text-muted
-                      &nbsp; 
-                      = distance_of_time_in_words(job.published_at, Time.now)
-                      ago
-                
-                .description
-                  %br
-                  %br
-                  = Redcarpet::Markdown.new(Redcarpet::Render::HTML, extensions: {}).render(job.description).html_safe
-
-                  %p
-                    = link_to job.company_url, target: '_blank'
-                    %span.text-muted= fa_icon("external-link")
-                    %br
-                    - unless job.employer_careers_url.blank?
-                      Careers site:
-                      = link_to job.employer_careers_url, target: '_blank'
+        - if @jobs.size > 1
+          - for job in @jobs[1..-1]
+            %article
+              .card.job
+                .card-block
+                  %header
+                    %h1.card-title= link_to job.title, job
+                    %p.card-subtitle
+                      = link_to job.company_name, job.company_url, target: '_blank'
                       %span.text-muted= fa_icon("external-link")
+                      %span.text-muted
+                        &nbsp; 
+                        = distance_of_time_in_words(job.published_at, Time.now)
+                        ago
+                  
+                  .description
+                    %br
+                    %br
+                    = Redcarpet::Markdown.new(Redcarpet::Render::HTML, extensions: {}).render(job.description).html_safe
+
+                    %p
+                      = link_to job.company_url, target: '_blank'
+                      %span.text-muted= fa_icon("external-link")
+                      %br
+                      - unless job.employer_careers_url.blank?
+                        Careers site:
+                        = link_to job.employer_careers_url, target: '_blank'
+                        %span.text-muted= fa_icon("external-link")
 
 
 
-                %br
-                .card-text.skill-tags
-                  - rails_tag = false
-                  - if job.skill_list.any?
-                    .tag
-                      - job.skill_list[0..7].each do |tag|
-                        
-                        / - if (tag == 'Ruby on Rails' || tag == 'Rails') && rails_tag == false
-                        /   %span= image_tag "122px-Ruby_on_Rails.png", height: '30'
-                        /   - rails_tag = true
-                        / - elsif tag == 'Ruby' 
-                        /   %span= image_tag "ruby-icon.png", height: '30'
-                        / - elsif tag == 'Ember.js' || tag == 'Ember'
-                        /   %span= image_tag "ember-icon.png", height: '30'
-                        / - elsif tag == 'Javascript'
-                        /   %span= image_tag "javascript.png", height: '30'
-                        / - elsif tag == 'MariaDB'
-                        /   %span= image_tag "mariadb-icon.png", height: '30'
-                        / - elsif tag == 'Node.js'
-                        /   %span= image_tag "nodejs-icon.png", height: '30'
-                        / - elsif tag == 'MySql'
-                        /   %span= image_tag "mysql-icon.png", height: '30'
-                        / - elsif tag == 'Angular' || tag == 'Angular.js'
-                        /   %span= image_tag "angular-icon.png", height: '30'
-                        / - elsif tag == 'Ruby on Rails' || tag == 'Rails'
-                        /   - nil
-                        / - else
-                        %span.btn.btn-secondary.btn-tag= tag
-                    - if job.skill_list.size > 8
-                      = '...'
+                  %br
+                  .card-text.skill-tags
+                    - rails_tag = false
+                    - if job.skill_list.any?
+                      .tag
+                        - job.skill_list[0..7].each do |tag|
+                          %span.btn.btn-secondary.btn-tag
+                            / - puts params[:tags]
+                            / - if params[:tags]
+                            /   = link_to tag, root_path(tags: params[:tags] + '_' + tag)
+                            / - else
+                            /   = link_to tag, root_path(tags: tag)
+
+                            - if tags && tags.include?(tag)
+                              - if tags.size == 1
+                                = link_to tag, root_path
+                              - else
+                                = link_to tag, root_path(tags: params[:tags].gsub("_#{tag}",""))
+                            - elsif tags
+                              = link_to tag, root_path(tags: params[:tags] + '_' + tag)
+                            - else
+                              = link_to tag, root_path(tags: tag)
+
+
+
+                      - if job.skill_list.size > 8
+                        = '...'
 
 
 
