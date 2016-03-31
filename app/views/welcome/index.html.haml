@@ -2,8 +2,8 @@
 .container
   .row
     .col-md-12
-      %ul.nav.nav-pills
-        %li.nav-item= link_to 'All', root_path, class: "nav-link pop #{'active' unless params[:tag]}"
+      %ul.nav.nav-pills.tag-pills
+        %li.nav-item= link_to 'All', root_path, class: "nav-link pop #{'active' unless params[:tags]}"
         / %li.nav-item= link_to 'Front-End', root_path(tag: 'front-end-jobs'), class: "nav-link pop #{'active' if params[:tag] == 'front-end-jobs'}"
         - all_tags = ActsAsTaggableOn::Tag.most_used(10).map {|t| t.name }
         - puts all_tags
@@ -15,6 +15,7 @@
           %li.nav-item
             - if tags && tags.include?(tag)
               - if tags.size == 1
+                - tag = "Front-end Jobs" if tag == 'front-end-jobs'
                 = link_to tag, root_path, class: "nav-link pop active"
               - else
                 = link_to tag, root_path(tags: params[:tags].gsub("_#{tag}","")), class: "nav-link pop active"
