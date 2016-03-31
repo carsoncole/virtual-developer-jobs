@@ -31,16 +31,10 @@
                   = fa_icon("long-arrow-right")
                   = link_to " Read More", job_path(@job_banner)
               .col-md-4
-                %p
-                  - unless @job_banner.company_url.blank?
-                    = link_to @job_banner.company_url, target: '_blank'
+                - unless @job_banner.employer_careers_url.blank?  
+                  %p
+                    = link_to "Careers site", @job_banner.employer_careers_url, target: '_blank'
                     %span.text-muted= fa_icon("external-link")
-                    %br
-                  - unless @job_banner.employer_careers_url.blank?
-                    Careers site:
-                    = link_to @job_banner.employer_careers_url, target: '_blank'
-                    %span.text-muted= fa_icon("external-link")
-
 
 
                 %br
