@@ -16,11 +16,14 @@
       %h4.h4= @job.company_name
       
       %p
-        = link_to @job.company_url
+        - unless @job.company_url.blank?
+          = link_to(@job.company_url, target: '_blank')
+          %span.text-muted= fa_icon("external-link")
         %br
         - unless @job.employer_careers_url.blank?
           Careers site:
-          = link_to @job.employer_careers_url
+          = link_to @job.employer_careers_url, target: '_blank'
+          %span.text-muted= fa_icon("external-link")
 
 
       - if @job.published_at
@@ -69,7 +72,8 @@
       - unless @job.job_url.blank?
         %p
           Job URL:
-          = link_to @job.job_url
+          = link_to @job.job_url, target: '_blank'
+          %span.text-muted= fa_icon("external-link")
 
       .label.label-info
         Remote
