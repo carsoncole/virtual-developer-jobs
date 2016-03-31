@@ -26,7 +26,9 @@
                     = distance_of_time_in_words(@job_banner.published_at, Time.now)
                     ago
                 %br
-                = Redcarpet::Markdown.new(Redcarpet::Render::HTML, extensions: {}).render(@job_banner.description).html_safe
+                = Redcarpet::Markdown.new(Redcarpet::Render::HTML, extensions: {}).render(@job_banner.description).truncate(500).html_safe
+                %span= fa_icon("long-arrow-right")
+                = link_to " Read More", job_path(@job_banner)
               .col-md-4
                 %p
                   - unless @job_banner.company_url.blank?
