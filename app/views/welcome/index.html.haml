@@ -27,9 +27,11 @@
                     ago
                 %br
                 = Redcarpet::Markdown.new(Redcarpet::Render::HTML, extensions: {}).render(@job_banner.description).truncate(500).html_safe
+                %br
                 %p
-                  = fa_icon("long-arrow-right")
-                  = link_to " Read More", job_path(@job_banner)
+                  %strong
+                    = fa_icon("long-arrow-right")
+                    = link_to " Read More", job_path(@job_banner)
               .col-md-4
                 - unless @job_banner.employer_careers_url.blank?  
                   %p
