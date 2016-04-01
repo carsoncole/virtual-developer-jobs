@@ -94,6 +94,10 @@ class Job < ActiveRecord::Base
   end
 
 
+  def self.published
+    where("published_at > ?", Date.today - Ranker::JOB_DURATION)
+  end
+
   private
 
   def set_initial_rank!

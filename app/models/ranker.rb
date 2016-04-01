@@ -4,9 +4,11 @@ class Ranker
   JOB_DURATION = 30 # days
 
   def self.run
-    Job.each do |job|
-      days_left = JOB_DURATION - (Date.today - job.published_at)
-      job.rank = job.rank - (job.rank / days_left)
+    Job.published.all.each do |job|
+      days_left = ( job.published_at + JOB_DURATION.days - Time.now ) / (24 * 60 * 60)
+      if job.rank && job.rank > 0
+        job.update( rank:  job.rank - (job.rank / days_left.to_i) )
+      end
     end
   end
 

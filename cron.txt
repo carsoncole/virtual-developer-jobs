@@ -1,0 +1,2 @@
+# Run Ranker
+00 02 * * *     bash -l /home/rails/rails_project/script/run_ranker.sh
