@@ -11,8 +11,9 @@
 
         %hr
 
-      %h1.h1= @job.title
       .pull-right= image_tag(@job.logo.url(:thumb)) if @job.logo.exists?
+      %h1.h1= @job.title
+
       %h4.h4= @job.company_name
       
       %p
