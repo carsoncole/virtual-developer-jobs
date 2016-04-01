@@ -115,12 +115,7 @@
                     - if job.skill_list.any?
                       .tag
                         - job.skill_list[0..7].each do |tag|
-                          %span.btn.btn-secondary.btn-tag
-                            / - puts params[:tags]
-                            / - if params[:tags]
-                            /   = link_to tag, root_path(tags: params[:tags] + '_' + tag)
-                            / - else
-                            /   = link_to tag, root_path(tags: tag)
+                          %span.btn.btn-secondary.btn-tag{class: (@param_tags && @param_tags.include?(tag) ? 'pop' : nil)}
 
                             - if @param_tags && @param_tags.include?(tag)
                               - if @param_tags.size == 1
