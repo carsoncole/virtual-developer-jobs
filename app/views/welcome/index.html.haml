@@ -112,7 +112,7 @@
                   %br
                   .card-text.skill-tags
                     - rails_tag = false
-                    .pull-right= image_tag(job.logo.url(:thumb), width: 60) if job.logo.url(:thumb)
+                    .pull-right= image_tag(job.logo.url(:thumb), width: 60) if job.logo.exists?
                     - if job.skill_list.any?
                       .tag
                         - job.skill_list[0..7].each do |tag|
