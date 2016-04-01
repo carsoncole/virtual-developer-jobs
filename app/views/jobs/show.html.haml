@@ -67,15 +67,14 @@
       %br
     .col-md-4
       %h4.h4 JOB DETAILS
+      
       - unless @job.job_url.blank?
-        %p
-          = link_to "Employer Job Post", @job.job_url, target: '_blank'
-          %span.text-muted= fa_icon("external-link")
+        = link_to "Employer Job Post", @job.job_url, target: '_blank'
+        %span.text-muted= fa_icon("external-link")
 
       - unless @job.employer_careers_url.blank?   
-        %p
-          = link_to "Careers site", @job.employer_careers_url, target: '_blank'
-          %span.text-muted= fa_icon("external-link")
+        = link_to "Careers site", @job.employer_careers_url, target: '_blank'
+        %span.text-muted= fa_icon("external-link")
 
       .label.label-info
         Remote
