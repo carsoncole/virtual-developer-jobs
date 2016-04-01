@@ -30,7 +30,7 @@
             .card-block
               .row
                 .col-md-8
-                  .pull-right= image_tag(@job_banner.logo.url(:thumb), width: 80) if @job_banner.logo.exists?
+                  
                   %h1.card-title= link_to @job_banner.title, @job_banner
 
                   %p.card-subtitle
@@ -48,12 +48,8 @@
                       = fa_icon("long-arrow-right")
                       = link_to " Read More", job_path(@job_banner)
                 .col-md-4
-                  - unless @job_banner.employer_careers_url.blank?  
-                    %p
-                      = link_to "Careers site", @job_banner.employer_careers_url, target: '_blank'
-                      %span.text-muted= fa_icon("external-link")
-
-
+                  .pull-right= image_tag(@job_banner.logo.url(:thumb), width: 80) if @job_banner.logo.exists?
+                  %br
                   %br
                   .card-text.skill-tags
                     - rails_tag = false
