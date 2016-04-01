@@ -10,6 +10,15 @@ class WelcomeController < ApplicationController
     else
       @jobs = Job.where('published_at NOT NULL').order('published_at DESC')
     end
+    @all_tags = ActsAsTaggableOn::Tag.most_used(12).map {|t| t.name }.delete_if{|x| ['CSS', 'HTML', 'HTML5'].include? x }
+    @param_tags = params[:tags].split("_") if params[:tags]
+    
+    if @param_tags
+      @param_tags.each do |t|
+        @all_tags << t unless @all_tags.include? t
+      end
+    end
+
     @job_banner = @jobs.first
     @meta_title = 'Job Site for Virtual and Remote Jobs'
   end

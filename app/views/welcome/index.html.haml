@@ -1,25 +1,18 @@
-- tags = params[:tags].split("_") if params[:tags]
 .container
   .row
     .col-md-12
       %ul.nav.nav-pills.tag-pills
         %li.nav-item= link_to 'All', root_path, class: "nav-link pop #{'active' unless params[:tags]}"
-        / %li.nav-item= link_to 'Front-End', root_path(tag: 'front-end-jobs'), class: "nav-link pop #{'active' if params[:tag] == 'front-end-jobs'}"
-        - all_tags = ActsAsTaggableOn::Tag.most_used(10).map {|t| t.name }
-        - puts all_tags
-        - puts tags
-        - if tags
-          - tags.each do |t|
-            - all_tags << t unless all_tags.include? t
-        - all_tags.each do |tag|
+
+        - @all_tags.each do |tag|
           %li.nav-item
-            - if tags && tags.include?(tag)
-              - if tags.size == 1
+            - if @param_tags && @param_tags.include?(tag)
+              - if @param_tags.size == 1
                 - tag = "Front-end Jobs" if tag == 'front-end-jobs'
                 = link_to tag, root_path, class: "nav-link pop active"
               - else
                 = link_to tag, root_path(tags: params[:tags].gsub("_#{tag}","")), class: "nav-link pop active"
-            - elsif tags
+            - elsif @param_tags
               = link_to tag, root_path(tags: params[:tags] + '_' + tag), class: "nav-link pop"
             - else
               = link_to tag, root_path(tags: tag), class: "nav-link pop"
@@ -66,7 +59,17 @@
                     - if @job_banner.skill_list.any?
                       .tag
                         - @job_banner.skill_list[0..7].each do |tag|
-                          %span.btn.btn-secondary.btn-tag= tag
+                          %span.btn.btn-secondary.btn-tag
+                            - if @param_tags && @param_tags.include?(tag)
+                              - if @param_tags.size == 1
+                                = link_to tag, root_path
+                              - else
+                                = link_to tag, root_path(tags: params[:tags].gsub("_#{tag}",""))
+                            - elsif @param_tags
+                              = link_to tag, root_path(tags: params[:tags] + '_' + tag)
+                            - else
+                              = link_to tag, root_path(tags: tag)
+
                       - if @job_banner.skill_list.size > 8
                         = '...'
 
@@ -119,12 +122,12 @@
                             / - else
                             /   = link_to tag, root_path(tags: tag)
 
-                            - if tags && tags.include?(tag)
-                              - if tags.size == 1
+                            - if @param_tags && @param_tags.include?(tag)
+                              - if @param_tags.size == 1
                                 = link_to tag, root_path
                               - else
                                 = link_to tag, root_path(tags: params[:tags].gsub("_#{tag}",""))
-                            - elsif tags
+                            - elsif @param_tags
                               = link_to tag, root_path(tags: params[:tags] + '_' + tag)
                             - else
                               = link_to tag, root_path(tags: tag)
