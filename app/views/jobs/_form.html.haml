@@ -2,7 +2,7 @@
   .row
     .col-md-12
       .form-group
-        = form_for @job do |f|
+        = form_for @job, html: { multipart: true } do |f|
           .form-group
             - if @job.errors.any?
               #error_explanation
@@ -61,6 +61,11 @@
 
               = f.label :url
               = f.text_field :company_url, class: 'form-control'        
+
+              %br
+
+              = f.label :logo
+              = f.file_field :logo
 
               %br
 

@@ -16,3 +16,4 @@ gem 'friendly_id', '~> 5.1.0'
 gem 'twitter', '~> 5.16'
 gem 'font-awesome-rails'
 gem 'turbolinks'
+gem "paperclip", "~> 4.2"
