@@ -59,7 +59,7 @@
                     - if @job_banner.skill_list.any?
                       .tag
                         - @job_banner.skill_list[0..7].each do |tag|
-                          %span.btn.btn-secondary.btn-tag
+                          %span.btn.btn-secondary.btn-tag{class: (@param_tags && @param_tags.include?(tag) ? 'pop' : nil)}
                             - if @param_tags && @param_tags.include?(tag)
                               - if @param_tags.size == 1
                                 = link_to tag, root_path
