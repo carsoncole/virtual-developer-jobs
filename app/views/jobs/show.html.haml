@@ -71,11 +71,12 @@
       - unless @job.job_url.blank?
         = link_to "Employer Job Post", @job.job_url, target: '_blank'
         %span.text-muted= fa_icon("external-link")
-
+        %br
       - unless @job.employer_careers_url.blank?   
         = link_to "Careers site", @job.employer_careers_url, target: '_blank'
         %span.text-muted= fa_icon("external-link")
-
+        %br
+        
       .label.label-info
         Remote
       &nbsp;
