@@ -101,7 +101,7 @@ class Job < ActiveRecord::Base
   private
 
   def set_initial_rank!
-    self.update(rank: Rankers::JOB_DURATION)
+    self.update(rank: Ranker::JOB_DURATION)
   end
 
   def send_new_job_posted_notification!
