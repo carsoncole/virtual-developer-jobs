@@ -3,6 +3,9 @@ Carson Cole
 
 This application is an online job site for contract developers working virtually/remotely, but can be modified for any type of job site.
 
+==== Banner Job ====
+Jobs that are shown in the banner are shown based on their rank, which can be processed on a daily basis. To boost a job to likely show in the banner, you must increase its rank attribute, which will self-decay based on a cron job (explained below).
+
 == Requirements
 
 === Ruby
@@ -17,6 +20,8 @@ Configured by default to use Sqlite3, but can be changed in database.yml to use 
 - RAILS_ENV=production rake db:migrate
 
 - RAILS_ENV=production rake assets:precompile
+
+- Load cron.txt into Crontab to process Job ranks on a daily basis.
 
 == Authentication
 
