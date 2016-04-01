@@ -9,7 +9,7 @@ class Job < ActiveRecord::Base
 
   has_one :payment
   after_save :send_your_job_has_been_posted_notification!, if: Proc.new {|job| job.published_at_changed? && job.published_at > Time.now - 20.minutes}
-  after_save :set_initial_rank!, if: Proc.new {|job| job.published_at_changed? && job.published_at > Time.now - 20.minutes}
+  before_save :set_initial_rank!, if: Proc.new {|job| job.published_at_changed? && job.published_at > Time.now - 20.minutes}
   after_save :send_new_job_posted_notification!, if: Proc.new {|job| job.published_at_changed? && job.published_at > Time.now - 20.minutes}
   validates :company_name, :title, :company_email, :description, :how_to_apply, presence: true
   validates :company_name, length: { maximum: 40 }
@@ -101,7 +101,7 @@ class Job < ActiveRecord::Base
   private
 
   def set_initial_rank!
-    self.update(rank: Ranker::JOB_DURATION)
+    self.rank =  Ranker::JOB_DURATION
   end
 
   def send_new_job_posted_notification!
