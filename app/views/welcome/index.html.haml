@@ -86,6 +86,7 @@
                 .card-block
                   %header
                     %h1.card-title= link_to job.title, job
+                    .pull-right= image_tag(job.logo.url(:thumb), width: 60) if job.logo.exists?
                     %p.card-subtitle
                       = link_to job.company_name, job.company_url, target: '_blank'
                       %span.text-muted= fa_icon("external-link")
@@ -93,27 +94,11 @@
                         &nbsp; 
                         = distance_of_time_in_words(job.published_at, Time.now)
                         ago
-                  
-                  .description
-                    %br
-                    %br
-                    = Redcarpet::Markdown.new(Redcarpet::Render::HTML, extensions: {}).render(job.description).html_safe
-
-                    %p
-                      = link_to job.company_url, target: '_blank'
-                      %span.text-muted= fa_icon("external-link")
-                      %br
-                      - unless job.employer_careers_url.blank?
-                        Careers site:
-                        = link_to job.employer_careers_url, target: '_blank'
-                        %span.text-muted= fa_icon("external-link")
-
-
 
                   %br
                   .card-text.skill-tags
                     - rails_tag = false
-                    .pull-right= image_tag(job.logo.url(:thumb), width: 60) if job.logo.exists?
+                    
                     - if job.skill_list.any?
                       .tag
                         - job.skill_list[0..7].each do |tag|
