@@ -14,16 +14,15 @@
       .pull-right= image_tag(@job.logo.url(:thumb)) if @job.logo.exists?
       %h1.h1= @job.title
 
-      %h4.h4= @job.company_name
-      
-      %p
-        - unless @job.company_url.blank?
-          = link_to(@job.company_url, target: '_blank')
+      %h4.h4
+        - if @job.company_url.blank?
+          = @job.company_name
+        - else  
+          = link_to(@job.company_name, @job.company_url, target: '_blank')
           %span.text-muted= fa_icon("external-link")
         %br
-        - unless @job.employer_careers_url.blank?
-          Careers site:
-          = link_to @job.employer_careers_url, target: '_blank'
+        - unless @job.employer_careers_url.blank?   
+          = link_to "Careers site", @job.employer_careers_url, target: '_blank'
           %span.text-muted= fa_icon("external-link")
 
 
@@ -73,8 +72,7 @@
       %h4.h4 JOB DETAILS
       - unless @job.job_url.blank?
         %p
-          Job URL:
-          = link_to @job.job_url, target: '_blank'
+          = link_to "Employer Job Post", @job.job_url, target: '_blank'
           %span.text-muted= fa_icon("external-link")
 
       .label.label-info
