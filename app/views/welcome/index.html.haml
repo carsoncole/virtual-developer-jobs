@@ -48,7 +48,9 @@
                       = fa_icon("long-arrow-right")
                       = link_to " Read More", job_path(@job_banner)
                 .col-md-4
-                  .pull-right= image_tag(@job_banner.logo.url(:thumb), width: 80) if @job_banner.logo.exists?
+                  .pull-right= image_tag(@job_banner.logo.url(:thumb)) if @job_banner.logo.exists?
+                  %br
+                  %br
                   %br
                   %br
                   .card-text.skill-tags
