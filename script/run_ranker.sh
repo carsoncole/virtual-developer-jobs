@@ -1,0 +1,1 @@
+(cd /home/rails/rails_project; RAILS_ENV=production bundle exec rake ranker:run)
