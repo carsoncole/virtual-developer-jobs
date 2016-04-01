@@ -30,6 +30,7 @@
             .card-block
               .row
                 .col-md-8
+                  .pull-right= image_tag(@job.logo.url(:thumb), width: 80) if @job.logo.exists?
                   %h1.card-title= link_to @job_banner.title, @job_banner
 
                   %p.card-subtitle
