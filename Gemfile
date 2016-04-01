@@ -17,3 +17,4 @@ gem 'twitter', '~> 5.16'
 gem 'font-awesome-rails'
 gem 'turbolinks'
 gem "paperclip", "~> 4.2"
+gem 'kaminari'

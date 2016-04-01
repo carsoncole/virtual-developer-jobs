@@ -4,18 +4,20 @@ class Job < ActiveRecord::Base
   has_attached_file :logo, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/images/:style/missing.png"
   validates_attachment_content_type :logo, content_type: /\Aimage\/.*\Z/
 
+  paginates_per 9
+
   extend FriendlyId
   friendly_id :title, use: :slugged
 
   has_one :payment
-  after_save :send_your_job_has_been_posted_notification!, if: Proc.new {|job| job.published_at_changed? && job.published_at > Time.now - 20.minutes}
+  # after_save :send_your_job_has_been_posted_notification!, if: Proc.new {|job| job.published_at_changed? && job.published_at > Time.now - 20.minutes}
   before_save :set_initial_rank!, if: Proc.new {|job| job.published_at_changed? && job.published_at > Time.now - 20.minutes}
-  after_save :send_new_job_posted_notification!, if: Proc.new {|job| job.published_at_changed? && job.published_at > Time.now - 20.minutes}
+  # after_save :send_new_job_posted_notification!, if: Proc.new {|job| job.published_at_changed? && job.published_at > Time.now - 20.minutes}
   validates :company_name, :title, :company_email, :description, :how_to_apply, presence: true
   validates :company_name, length: { maximum: 40 }
   validates :title, length: { maximum: 50 }
 
-  after_save :tweet, if: Proc.new { |j| j.published_at_changed? && j.published_at != nil && j.tweet_id.nil? }
+  # after_save :tweet, if: Proc.new { |j| j.published_at_changed? && j.published_at != nil && j.tweet_id.nil? }
 
   def tweet
     return if self.tweeted_at # don't allow retweets

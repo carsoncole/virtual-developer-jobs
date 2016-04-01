@@ -1,0 +1,44 @@
+.jobs
+  .row
+    .col-md-12
+      .card-columns
+        - for job in @jobs
+          %article
+            .card.job
+              .card-block
+                %header
+                  %h1.card-title= link_to job.title, job
+                  .pull-right= image_tag(job.logo.url(:thumb), width: 60) if job.logo.exists?
+                  %p.card-subtitle
+                    = link_to job.company_name, job.company_url, target: '_blank'
+                    %span.text-muted= fa_icon("external-link")
+                    %span.text-muted
+                      &nbsp; 
+                      = distance_of_time_in_words(job.published_at, Time.now)
+                      ago
+
+                %br
+                .card-text.skill-tags
+                  - rails_tag = false
+                  
+                  - if job.skill_list.any?
+                    .tag
+                      - job.skill_list[0..7].each do |tag|
+                        %span.btn.btn-secondary.btn-tag{class: (@param_tags && @param_tags.include?(tag) ? 'pop' : nil)}
+
+                          - if @param_tags && @param_tags.include?(tag)
+                            - if @param_tags.size == 1
+                              = link_to tag, root_path
+                            - else
+                              = link_to tag, root_path(tags: params[:tags].gsub("_#{tag}",""))
+                          - elsif @param_tags
+                            = link_to tag, root_path(tags: params[:tags] + '_' + tag)
+                          - else
+                            = link_to tag, root_path(tags: tag)
+
+
+
+                    - if job.skill_list.size > 8
+                      = '...'
+
+

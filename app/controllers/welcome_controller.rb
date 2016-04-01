@@ -12,7 +12,7 @@ class WelcomeController < ApplicationController
     end
 
     @job_banner = @jobs.order('rank DESC, published_at DESC').limit(1).first
-    @jobs = @jobs.order('published_at DESC').where.not(id: @job_banner.id)
+    @jobs = @jobs.order('published_at DESC').where.not(id: @job_banner.id).page(params[:page])
 
     @all_tags = ActsAsTaggableOn::Tag.most_used(12).map {|t| t.name }.delete_if{|x| ['CSS', 'HTML', 'HTML5'].include? x }
     @param_tags = params[:tags].split("_") if params[:tags]
@@ -24,5 +24,11 @@ class WelcomeController < ApplicationController
     end
 
     @meta_title = 'Job Site for Virtual and Remote Jobs'
+
+
+    respond_to do |format|
+      format.html
+      format.js # add this line for your js template
+    end
   end
 end
