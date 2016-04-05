@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160401164555) do
+ActiveRecord::Schema.define(version: 20160405025052) do
 
   create_table "jobs", force: :cascade do |t|
     t.string   "company_name",             null: false
@@ -38,6 +38,7 @@ ActiveRecord::Schema.define(version: 20160401164555) do
     t.integer  "logo_file_size"
     t.datetime "logo_updated_at"
     t.integer  "rank"
+    t.string   "job_application_url"
   end
 
   add_index "jobs", ["slug"], name: "index_jobs_on_slug", unique: true

@@ -1,12 +1,12 @@
 Rails.application.routes.draw do
   root 'welcome#index'
-  get 'sitemap/index'
   resources :notifications
   resources :payments, :developers, :employers
   resources :companies
   resources :jobs, only: [:show, :edit, :new, :update, :create, :destroy]
+
   resources :tag, only: [:index, :show]
-  get 'welcome/index'
+
   get '/sitemap', :to => 'sitemap#index', :as => :sitemap, :defaults => { :format => 'xml' }
 
   # The priority is based upon order of creation: first created -> highest priority.

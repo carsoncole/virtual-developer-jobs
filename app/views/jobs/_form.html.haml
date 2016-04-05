@@ -28,14 +28,23 @@
 
           .row
             .col-md-6
-              = f.label :employer_careers_url
-              = f.text_field :employer_careers_url, class: 'form-control'
+              = f.label :job_application_url
+              = f.text_field :job_application_url, class: 'form-control'
+          %br
+
+          .row
+            .col-md-6
+              = f.radio_button :is_full_time, true
+              = f.label :is_full_time, "Full time"
+
+              = f.radio_button :is_full_time, false
+              = f.label :is_full_time, "Part time"
           %br
 
           .row
             .col-md-10
               = f.label :description
-              %p.text-muted Markdown, ie. (## Section headings - h2##, '-' for bullets)
+              %p.text-muted Markdown, ie. (## Section headings - h2##, '-' for bullets, [link text](url))
               = f.text_area :description, rows: 10, class: 'form-control'
 
           %br
@@ -48,9 +57,8 @@
 
           %br
 
-          %hr
 
-          %h2 Organization
+          %h2 The Organization
 
           .row
             .col-md-6
@@ -61,6 +69,11 @@
 
               = f.label :url
               = f.text_field :company_url, class: 'form-control'        
+
+              %br
+
+              = f.label :employer_careers_url
+              = f.text_field :employer_careers_url, class: 'form-control'
 
               %br
 
@@ -79,30 +92,17 @@
               = f.email_field :company_email, class: 'form-control'   
 
 
-          %hr
-
-          %h2 Job Details
-
-          .row
-            .col-md-6
-              = f.radio_button :is_full_time, true
-              = f.label :is_full_time, "Full time"
-
-              = f.radio_button :is_full_time, false
-              = f.label :is_full_time, "Part time"
 
 
-          %hr
+            / %hr
 
-          %h2 How to Apply
+            / %h2 How to Apply
 
-          .row
+            / .row
             .col-md-10
-              %p.text-muted Explain how to apply, ie. "Please send a resume and cover letter to hr@example.com"
-              = f.text_area :how_to_apply, class: 'form-control'
-
-
+              / %p.text-muted Explain how to apply, ie. "Please send a resume and cover letter to hr@example.com"
+              / = f.text_area :how_to_apply, class: 'form-control'
 
               %br
               .actions
-                = f.submit 'Save and Preview'
+                = f.submit 'Save and Preview', class: 'btn pop'

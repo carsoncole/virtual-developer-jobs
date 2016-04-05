@@ -1,9 +1,6 @@
 .container
   .row
     .col-md-8
-      %br
-
-
 
       - if @preview
         %h1
@@ -32,21 +29,15 @@
 
       %br
 
-      .job-description= Redcarpet::Markdown.new(Redcarpet::Render::HTML, extensions: {}).render(@job.description).html_safe
+      .job-description= Redcarpet::Markdown.new(Redcarpet::Render::HTML, autolink: true).render(@job.description).html_safe
 
       %br
 
-
-      
-
-
       - unless @job.how_to_apply.blank?
+        = Redcarpet::Markdown.new(Redcarpet::Render::HTML, autolink: true).render(@job.how_to_apply).html_safe
 
-        .alert.alert-info
-          %h3.h3.no-top-margin APPLY
-
-          = Redcarpet::Markdown.new(Redcarpet::Render::HTML, extensions: {}).render(@job.how_to_apply).html_safe
-
+      - unless @job.job_application_url.blank?
+        = link_to "Apply", @job.job_application_url, class: 'btn pop'
 
 
 
@@ -54,13 +45,16 @@
       - if @preview
         %hr
         %br
-        = link_to 'Next Step: Payment', new_payment_path(job_id: @job.id)
+        = form_tag job_path(job_id: @job.id, publish: true), method: :put do
+          =  submit_tag 'Next Step: Publish'
+
         \&nbsp|&nbsp
         = link_to 'Edit', edit_job_path(@job)
 
 
       - unless @preview
-        
+        %br
+        %br
         %p= link_to "<< Back to all Jobs", root_path
 
 
