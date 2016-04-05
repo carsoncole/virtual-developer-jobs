@@ -18,7 +18,7 @@ class Job < ActiveRecord::Base
   validates :company_name, length: { maximum: 40 }
   validates :title, length: { maximum: 50 }
 
-  # after_save :tweet, if: Proc.new { |j| j.published_at_changed? && j.published_at != nil && j.tweet_id.nil? }
+  after_save :tweet, if: Proc.new { |j| j.published_at_changed? && j.published_at != nil && j.tweet_id.nil? }
 
   def tweet
     return if self.tweeted_at # don't allow retweets
